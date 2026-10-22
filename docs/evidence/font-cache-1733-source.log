@@ -1,0 +1,6 @@
+Base: hrev60207-1733-g3e7f3a491b
+Fixed server source: e9268e63e0
+Only changes in app_server, headers and supporting library sources:
+src/servers/app/ServerFont.h
+src/servers/app/font/FontCacheEntry.cpp
+src/servers/app/font/FontCacheEntry.h

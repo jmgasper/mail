@@ -1,0 +1,6 @@
+Haiku airos R1~beta6+development hrev60207+1733 Oct 16 2026 11:3 x86_64 x86_64 Haiku
+4b05d717f7504d7863ca56fa3cb2faa169689c368d17ddc94416406db6b08768  /boot/system/servers/app_server
+Encountered problems:
+problem 1: nothing provides haiku_private_font_cache>=1 needed by airos_mail-0.1.0~dev1-9
+  solution 1:
+    - do not install "pkg:airos_mail-0.1.0~dev1-9-x86_64"

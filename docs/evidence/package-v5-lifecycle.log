@@ -1,0 +1,38 @@
+Disposable package database: /boot/home/mail-package-NTovpC/mail.db
+The following changes will be made:
+  in system:
+    install package airos_mail-0.1.0~dev1-4 from local file
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_11:11:11"
+[system] Cleaning up ...
+[system] Done.
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+Preview paint at 180,70–1020,740: red 0 green 149 blue 221 yellow 0
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+Native package: 102 checks passed (fresh install, Deskbar launch, metadata, installed app/helper, draft edit and persistence)
+The following changes will be made:
+  in system:
+    upgrade package airos_mail-0.1.0~dev1-4 to 0.1.0~dev1-5 from local file
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_11:33:25"
+[system] Cleaning up ...
+[system] Done.
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+Native package: 53 checks passed (after upgrade, Deskbar launch, metadata, installed app/helper, draft edit and persistence)
+The following changes will be made:
+  in system:
+    uninstall package airos_mail-0.1.0~dev1-5
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_11:33:34"
+[system] Cleaning up ...
+[system] Done.
+Package lifecycle passed: install, native launch/edit/preview, upgrade, reopen, removal; draft database and legacy Mail preserved.
+Read-only closed database check: schema 11; active/revision/error move columns present; one positioned draft image preserved.

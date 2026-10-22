@@ -1,0 +1,43 @@
+                  Name  Type     State    Enabled
+-------------------------------------------------
+[;1mx-vnd.haiku-app_server[0m  service  [32;1mrunning[0m  yes    
+
+Details: BMessage(0x0) {
+        name = string("x-vnd.haiku-app_server", 23 bytes)
+        team = int32(0x76 or 118)
+        enabled = bool(true)
+        running = bool(true)
+        launched = bool(true)
+        service = bool(true)
+        launch = string("/system/servers/app_server", 27 bytes)
+        port = BMessage(0x0) {
+                capacity = int32(0xc8 or 200)
+                port = int32(0x5f or 95)
+        }
+}
+Team                                                  Id #Threads  Gid  Uid 
+kernel_team                                            1       45    0    0 
+/boot/system/servers/launch_daemon                    34        2    0    0 
+/boot/system/servers/debug_server                     40        2    0    0 
+/boot/system/servers/mount_server                     41        2    0    0 
+/boot/system/servers/net_server                       42        4    0    0 
+/boot/system/servers/package_daemon                   43        2    0    0 
+/boot/system/servers/power_daemon                     44        2    0    0 
+/boot/system/servers/registrar                        45        6    0    0 
+/boot/system/servers/syslog_daemon                    46        2    0    0 
+/boot/system/servers/launch_daemon user               58        2    0    0 
+/boot/system/servers/bluetooth_server                 67        4    0    0 
+/boot/system/servers/media_server                     68        4    0    0 
+/boot/system/servers/mcp_server                       69        1    0    0 
+/boot/system/servers/app_server                      118       25    0    0 
+/boot/system/Tracker                                 127        8    0    0 
+/boot/system/Deskbar                                 128        6    0    0 
+/boot/system/bin/sshd -D                             140        1    0    0 
+/boot/system/servers/input_server                    146       13    0    0 
+/boot/system/bin/sh /boot/home/config/settings/boot/UserBootscr   179        1    0    0 
+/boot/system/servers/media_addon_server              181        6    0    0 
+/bin/sleep 30                                       2548        1    0    0 
+/packages/openssh-10.4p1-1/.self/lib/openssh/sshd-session -D -R  2549        1    0    0 
+/packages/openssh-10.4p1-1/.self/lib/openssh/sshd-session -D -R  2551        1    0    0 
+/bin/bash -c test ! -e /boot/system/apps/airOS-Mail/Mail && tes  2552        1    0    0 
+/boot/system/bin/ps                                 2554        1    0    0 

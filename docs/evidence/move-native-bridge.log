@@ -1,0 +1,14 @@
+=== RUN   TestMailInterop
+time="2026-10-21T10:45:15Z" level=error msg="404 GET https://127.0.0.1:41856/core/v4/organizations: 404 Not Found (Code=0, Status=404)" pkg=gpa/client
+time="2026-10-21T10:45:16Z" level=error msg="404 GET https://127.0.0.1:41856/core/v4/organizations: 404 Not Found (Code=0, Status=404)" pkg=gpa/client
+time="2026-10-21T10:45:17Z" level=error msg="404 GET https://127.0.0.1:41856/core/v4/organizations: 404 Not Found (Code=0, Status=404)" pkg=gpa/client
+time="2026-10-21T10:45:17Z" level=error msg="Command failed" cmd="AUTHENTICATE <AUTH_DATA>" error="no such user" pkg=gluon/session session=2
+time="2026-10-21T10:45:17Z" level=error msg="Incorrect login credentials." pkg=imap sessionID=2 username=username@proton.local
+    mail_interop_test.go:87: Mail exercise: Native Mail / real Bridge: 50 checks passed (exercise)
+time="2026-10-21T10:45:18Z" level=error msg="404 GET https://127.0.0.1:41856/core/v4/organizations: 404 Not Found (Code=0, Status=404)" pkg=gpa/client
+time="2026-10-21T10:45:18Z" level=error msg="404 GET https://127.0.0.1:41856/core/v4/organizations: 404 Not Found (Code=0, Status=404)" pkg=gpa/client
+time="2026-10-21T10:45:18Z" level=error msg="404 GET https://127.0.0.1:41856/core/v4/organizations: 404 Not Found (Code=0, Status=404)" pkg=gpa/client
+    mail_interop_test.go:87: Mail reopen: Native Mail / real Bridge: 16 checks passed (reopen)
+imap/client: 2026/10/21 10:45:18 error reading response: read tcp 127.0.0.1:42739->127.0.0.1:41937: use of closed network connection
+--- PASS: TestMailInterop (4.56s)
+PASS

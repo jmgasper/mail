@@ -1,0 +1,12 @@
+392 assertions passed; malformed MIME corpus completed
+38 snooze assertions passed
+Gmail storage: 45 assertions passed
+39 organization assertions passed
+111 composition/outbox assertions passed
+20 preview snapshot/HTML checks passed
+35 received reader checks passed; 500 mutated HTML inputs parsed under bounded limits
+23 HTML clipboard checks passed; 500 mutated inputs validated
+Native Mail smoke passed: import, layout, read, archive, search
+Native typography: 55 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Native composer: 120 checks passed (bounded multilevel history, caret styles, native shortcuts, placement, clipboard, delayed drops, reopen and queued MIME)
+Native inline images: 40 checks passed (painted pixels, reflow, selection, keyboard, portable clipboard, history, persistence and decoder fallback)

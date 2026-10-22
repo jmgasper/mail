@@ -1,0 +1,23 @@
+20 preview snapshot/HTML checks passed
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+Native message preview: 50 checks passed (rendering, pixels, reflow, CSP, transfer, refresh, companion and shutdown)
+Independent preview HTTP fixture: zero network requests

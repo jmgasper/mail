@@ -1,0 +1,17 @@
+                  Name  Type     State    Enabled
+-------------------------------------------------
+[;1mx-vnd.haiku-app_server[0m  service  [32;1mrunning[0m  yes    
+
+Details: BMessage(0x0) {
+        name = string("x-vnd.haiku-app_server", 23 bytes)
+        team = int32(0x77 or 119)
+        enabled = bool(true)
+        running = bool(true)
+        launched = bool(true)
+        service = bool(true)
+        launch = string("/system/servers/app_server", 27 bytes)
+        port = BMessage(0x0) {
+                capacity = int32(0xc8 or 200)
+                port = int32(0x5f or 95)
+        }
+}

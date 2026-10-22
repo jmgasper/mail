@@ -1,0 +1,25 @@
+UpdateCTestConfiguration  from :/mnt/HaikuWork/apps/mail/build-host/DartConfiguration.tcl
+Parse Config file:/mnt/HaikuWork/apps/mail/build-host/DartConfiguration.tcl
+Test project /mnt/HaikuWork/apps/mail/build-host
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 16
+    Start 16: mail_gmail_drafts
+
+16: Test command: /usr/bin/python3 "/mnt/HaikuWork/apps/mail/tests/gmail_draft_fixture.py" "/mnt/HaikuWork/apps/mail/build-host/mail_gmail_draft_tests"
+16: Working Directory: /mnt/HaikuWork/apps/mail/build-host
+16: Test timeout computed to be: 110
+16: 117 Gmail draft transport and MIME checks passed
+16: Draft server verified: MIME, Unicode names, BCC, repeated CID images, stable draft IDs, changing message IDs, exact mutation counts, no uncertain replay or credential redirect.
+1/1 Test #16: mail_gmail_drafts ................   Passed    2.60 sec
+
+The following tests passed:
+	mail_gmail_drafts
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   2.60 sec

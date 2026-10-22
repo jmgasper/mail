@@ -1,0 +1,2 @@
+Native composer: 95 checks passed (bounded multilevel history, caret styles, native shortcuts, placement, clipboard, delayed drops, reopen and queued MIME)
+Native typography: 55 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)

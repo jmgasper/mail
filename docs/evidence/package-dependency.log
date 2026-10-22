@@ -1,0 +1,5 @@
+Encountered problems:
+problem 1: nothing provides haiku_private_font_cache>=1 needed by airos_mail-0.1.0~dev1-1
+  solution 1:
+    - do not install "pkg:airos_mail-0.1.0~dev1-1-x86_64"
+Baseline package install status: 1

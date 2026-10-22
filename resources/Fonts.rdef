@@ -1,0 +1,3 @@
+resource(201, "Mail:NotoEmoji") #'RAWT' import "../third_party/noto-emoji/NotoEmoji.ttf";
+resource(202, "Mail:NotoEmoji:OFL") #'TEXT' import "../third_party/noto-emoji/OFL.txt";
+resource(203, "Mail:InlineObject") #'RAWT' import "InlineObject.ttf";

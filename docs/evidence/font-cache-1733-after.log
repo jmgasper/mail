@@ -1,0 +1,72 @@
+Haiku airos R1~beta6+development hrev60207+1733 Oct 16 2026 11:3 x86_64 x86_64 Haiku
+6ca524b957548383c62c15293587e2fa6b323af30e3fd5b579d421e6640eca63  /boot/system/servers/app_server
+launch_roster: Could not get target or job info for "app_server": Name not found
+package-attributes:
+	name: haiku
+	summary: The Haiku base system
+	description: The Haiku base system includes all system core software, like
+boot loader, kernel, the system libraries, servers, and applications.
+	vendor: Haiku Project
+	packager: air/OS: private-font cache fix for hrev60207+1733
+	flags:
+		system_package
+	architecture: x86_64
+	version: r1~beta6_hrev60207_1733-2
+	copyright: 2001-2026 Haiku, Inc. et al
+	license: MIT
+	license: GNU LGPL v2.1
+	provides: haiku_private_font_cache = 1
+	provides: haiku = r1~beta6_hrev60207_1733-2 (compatible >= r1~alpha4_pm_hrev51198)
+	provides: cmd:arp
+	provides: cmd:chop
+	provides: cmd:clear
+	provides: cmd:df
+	provides: cmd:ftpd
+	provides: cmd:hd
+	provides: cmd:hey
+	provides: cmd:login
+	provides: cmd:more
+	provides: cmd:passwd
+	provides: cmd:pidof
+	provides: cmd:ping
+	provides: cmd:prio
+	provides: cmd:ps
+	provides: cmd:renice
+	provides: cmd:resattr
+	provides: cmd:su
+	provides: cmd:telnet
+	provides: cmd:telnetd
+	provides: cmd:top
+	provides: cmd:traceroute
+	provides: cmd:trash
+	provides: cmd:unchop
+	provides: cmd:useradd
+	provides: cmd:watch
+	provides: cmd:xres
+	requires: noto>=2.7
+	requires: noto_sans_cjk_jp>=2.004
+	requires: intel_wifi_firmwares>=2025_02_11
+	requires: ralink_wifi_firmwares>=2023_08_04
+	requires: realtek_wifi_firmwares>=2019_01_02
+	requires: coreutils>=9.11
+	requires: cmd:sh
+	requires: cmd:bunzip2>=1.0.8
+	requires: cmd:gunzip>=1.14
+	requires: cmd:tar>=1.35
+	requires: cmd:unzip
+	requires: lib:libgcc_s>=1
+	requires: lib:libstdc++>=6.0.32
+	requires: lib:libsupc++>=13.3.0_2023_08_10
+	requires: lib:libedit>=0.0.72
+	requires: lib:libfontconfig>=1.16.1
+	requires: lib:libfreetype>=6.20.6
+	requires: lib:libicudata>=74.1
+	requires: lib:libicui18n>=74.1
+	requires: lib:libicuio>=74.1
+	requires: lib:libicuuc>=74.1
+	requires: lib:libncurses>=6.6.0
+	requires: lib:libssl>=3
+	requires: lib:libcrypto>=3
+	requires: lib:libz>=1.3.2
+	requires: lib:libzstd>=1.5.6
+	requires: lib:libexpat>=1.12.2

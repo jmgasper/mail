@@ -1,0 +1,45 @@
+Test project /mnt/HaikuWork/apps/mail/build-host
+      Start 15: mail_imap_drafts
+      Start 14: mail_moves
+      Start 18: mail_gmail_draft_sync
+      Start 12: mail_sent
+ 1/20 Test #18: mail_gmail_draft_sync ............   Passed    3.22 sec
+      Start 17: mail_gmail_drafts
+ 2/20 Test #17: mail_gmail_drafts ................   Passed    2.57 sec
+      Start  6: mail_draft_store
+ 3/20 Test  #6: mail_draft_store .................   Passed    0.82 sec
+      Start 10: mail_clipboard
+ 4/20 Test #10: mail_clipboard ...................   Passed    1.60 sec
+      Start 19: mail_organization_sync
+ 5/20 Test #15: mail_imap_drafts .................   Passed    9.28 sec
+      Start 16: mail_google
+ 6/20 Test #19: mail_organization_sync ...........   Passed    1.76 sec
+      Start 13: mail_protocol
+ 7/20 Test #16: mail_google ......................   Passed    2.66 sec
+      Start 20: mail_gmail_sync
+ 8/20 Test #12: mail_sent ........................   Passed   12.57 sec
+      Start  2: mail_core
+ 9/20 Test #13: mail_protocol ....................   Passed    3.46 sec
+      Start  1: mail_text_clusters
+10/20 Test  #1: mail_text_clusters ...............   Passed    0.33 sec
+      Start  9: mail_reader
+11/20 Test  #9: mail_reader ......................   Passed    0.24 sec
+      Start 11: mail_compose_mime
+12/20 Test #20: mail_gmail_sync ..................   Passed    2.15 sec
+      Start  7: mail_compose
+13/20 Test #11: mail_compose_mime ................   Passed    0.49 sec
+      Start  5: mail_gmail_store
+14/20 Test  #7: mail_compose .....................   Passed    0.42 sec
+      Start  3: mail_snooze
+15/20 Test  #3: mail_snooze ......................   Passed    0.22 sec
+      Start  4: mail_organization
+16/20 Test  #5: mail_gmail_store .................   Passed    0.34 sec
+      Start  8: mail_preview
+17/20 Test  #2: mail_core ........................   Passed    2.35 sec
+18/20 Test  #4: mail_organization ................   Passed    0.20 sec
+19/20 Test  #8: mail_preview .....................   Passed    0.09 sec
+20/20 Test #14: mail_moves .......................   Passed   26.54 sec
+
+100% tests passed, 0 tests failed out of 20
+
+Total Test time (real) =  26.55 sec

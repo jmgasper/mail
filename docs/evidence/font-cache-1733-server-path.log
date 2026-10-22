@@ -1,0 +1,20 @@
+                  Name  Type     State    Enabled
+-------------------------------------------------
+[;1mx-vnd.haiku-app_server[0m  service  [32;1mrunning[0m  yes    
+
+Details: BMessage(0x0) {
+        name = string("x-vnd.haiku-app_server", 23 bytes)
+        team = int32(0x76 or 118)
+        enabled = bool(true)
+        running = bool(true)
+        launched = bool(true)
+        service = bool(true)
+        launch = string("/system/servers/app_server", 27 bytes)
+        port = BMessage(0x0) {
+                capacity = int32(0xc8 or 200)
+                port = int32(0x60 or 96)
+        }
+}
+/boot/system/servers/app_server                      118       28    0    0 
+/bin/bash -c launch_roster info x-vnd.haiku-app_server; ps | gr   703        1    0    0 
+/boot/system/bin/grep app_server                     706        1    0    0 

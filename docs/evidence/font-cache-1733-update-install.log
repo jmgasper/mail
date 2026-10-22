@@ -1,0 +1,9 @@
+The following changes will be made:
+  in system:
+    upgrade package haiku-r1~beta6_hrev60207_1733-1 to r1~beta6_hrev60207_1733-2 from local file
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_20:16:23"
+[system] Cleaning up ...
+[system] Done.
+A reboot is necessary to complete the installation process.

@@ -1,0 +1,22 @@
+Move scenario passed: fallback
+Move scenario passed: atomic
+Move scenario passed: rev2
+Move scenario passed: copy_disconnect
+Move scenario passed: move_disconnect
+Move scenario passed: store_disconnect
+Move scenario passed: expunge_disconnect
+Move scenario passed: copy_no
+Move scenario passed: copy_no_receipt
+Move scenario passed: move_no_receipt
+Move scenario passed: bad_receipt
+Move scenario passed: conflicting_receipt
+Move scenario passed: no_copy
+Move scenario passed: duplicate
+Move scenario passed: different_bytes
+Move scenario passed: target_reset
+Move scenario passed: source_reset
+Move scenario passed: no_uidplus
+Move scenario passed: newer_edit
+Move scenario passed: checkpoint_crash
+220 move recovery checks passed
+Move server checks passed: exact copy counts, targeted expunge, old duplicate and unrelated deleted mail preserved.

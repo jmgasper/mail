@@ -1,0 +1,17 @@
+ninja: no work to do.
+-- Install configuration: "Release"
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-HCHa8f/apps/airOS-Mail/Mail
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-HCHa8f/apps/airOS-Mail/MailPreview
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-HCHa8f/documentation/packages/airos_mail/LICENSE
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-HCHa8f/documentation/packages/airos_mail/README.md
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-HCHa8f/documentation/packages/airos_mail/GOOGLE_SETUP.md
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-HCHa8f/documentation/packages/airos_mail/third_party/noto-emoji/OFL.txt
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-HCHa8f/documentation/packages/airos_mail/third_party/nlohmann/LICENSE.MIT
+----- Package Info ----------------
+header size:                     80
+heap size:                  3365549
+TOC size:                      1048
+package attributes size:        971
+total size:                 3365629
+-----------------------------------
+Invalid package attributes (BEOS:APP_SIG). Use a complete MIME database and isolated Haiku host tools with xattr references.

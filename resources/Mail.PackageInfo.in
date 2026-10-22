@@ -1,0 +1,38 @@
+name airos_mail
+version 0.1.0~dev1-@REVISION@
+architecture @ARCH@
+summary "Native email for air/OS"
+description "Mail combines multiple IMAP, POP3 and Gmail accounts in a native Haiku interface, with conversation views, rich-text composition, attachments, tags, filters, smart folders and snooze reminders. Proton accounts connect through Proton Mail Bridge. This is a development build; live-provider qualification is ongoing."
+packager "air/OS contributors"
+vendor "air/OS"
+copyrights {
+    "2026 air/OS contributors"
+    "Google LLC (Noto Emoji)"
+    "Niels Lohmann (JSON library)"
+}
+licenses {
+    MIT
+    "Mail Noto Emoji OFL 1.1"
+}
+provides {
+    airos_mail = 0.1.0~dev1
+    app:Mail = 0.1.0~dev1
+}
+requires {
+    haiku
+    haiku_private_font_cache >= 1
+    harfbuzz >= 14.2.0
+    lib:libharfbuzz
+    lib:libharfbuzz_subset
+    lib:libsqlite3
+    lib:libiconv
+    lib:libcurl
+    lib:libcrypto >= 3
+    lib:libxml2 >= 16
+    lib:libicuuc >= 74.1
+    lib:libicui18n >= 74.1
+    lib:libgcc_s >= 1
+    lib:libstdc++ >= 6.0.32
+    summit_webkit >= 1.10.1~git20261011.1233
+    ca_root_certificates
+}

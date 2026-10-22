@@ -1,0 +1,39 @@
+Disposable package database: /boot/home/mail-package-xYd90f/mail.db
+The following changes will be made:
+  in system:
+    install package airos_mail-0.1.0~dev1-8 from local file
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_20:18:00"
+[system] Cleaning up ...
+[system] Done.
+Preview paint at 180,70–1020,740: red 0 green 149 blue 221 yellow 0
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+Summit page stall: pid=1711 no rendering update for 2.3 s; WebCore scheduler: idle; drawing asked for since the last update; update observer pending; waiting for the compositor no
+Preview paint at 180,70–1020,740: red 0 green 149 blue 221 yellow 0
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+Native package: 147 checks passed (fresh install, Deskbar launch, metadata, installed app/helper, draft edit and persistence)
+The following changes will be made:
+  in system:
+    upgrade package airos_mail-0.1.0~dev1-8 to 0.1.0~dev1-9 from local file
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_20:19:52"
+[system] Cleaning up ...
+[system] Done.
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+Native package: 51 checks passed (after upgrade, Deskbar launch, metadata, installed app/helper, draft edit and persistence)
+The following changes will be made:
+  in system:
+    uninstall package airos_mail-0.1.0~dev1-9
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_20:20:11"
+[system] Cleaning up ...
+[system] Done.
+Package lifecycle passed: install, native launch/edit/preview, upgrade, reopen, removal; draft database and legacy Mail preserved.

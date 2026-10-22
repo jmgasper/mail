@@ -1,0 +1,2 @@
+95 IMAP draft transport checks passed
+IMAP draft fixture verified: TLS/STARTTLS, independent MIME parsing, exact upload counts, targeted cleanup and unrelated deleted messages preserved.

@@ -1,0 +1,2 @@
+Google OAuth/Gmail: 94 assertions passed
+Independent OAuth/Gmail fixture: PKCE, refresh, redirects, labels, BCC/MIME and no ambiguous retries verified

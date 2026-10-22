@@ -1,0 +1,21 @@
+35 received reader checks passed; 500 mutated HTML inputs parsed under bounded limits
+runtime_loader: /boot/system/lib/summit-webkit/lib/libcrypto.so.3: No version information available (required by /boot/home/mail-check/mail_native_reader)
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+Native received reader: 34 checks passed (HTML, CID pixels, privacy, plain text, thread picker, fallback, Mail integration and helper lifecycle)
+Independent preview HTTP fixture: zero network requests

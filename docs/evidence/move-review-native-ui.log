@@ -1,0 +1,21 @@
+Approve disposable move fixture key-store prompts if shown.
+Move stage 1
+Move stage 2
+Move stage 3
+Move stage 4
+Move stage 5
+Move stage 6
+Move stage 7
+Move stage 8
+Move stage 9
+Move stage 10
+Move stage 11
+Move stage 12
+Move stage 13
+Move stage 14
+Move stage 15
+Move stage 16
+Move stage 17
+Native move review passed (158 checks): Cancel, explicit retry, active guards, recovery, keep local, queued cancel, no sending
+Move stage 18
+Move server checks passed: exact copy counts, targeted expunge, old duplicate and unrelated deleted mail preserved.

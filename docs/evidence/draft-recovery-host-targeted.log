@@ -1,0 +1,11 @@
+Test project /mnt/HaikuWork/apps/mail/build-host
+    Start  2: mail_core
+1/3 Test  #2: mail_core ........................   Passed    2.29 sec
+    Start  6: mail_draft_store
+2/3 Test  #6: mail_draft_store .................   Passed    0.76 sec
+    Start 17: mail_gmail_draft_sync
+3/3 Test #17: mail_gmail_draft_sync ............   Passed    3.19 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =   6.25 sec

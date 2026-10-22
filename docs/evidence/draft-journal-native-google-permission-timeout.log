@@ -1,0 +1,11 @@
+Google UI step 1
+Google UI step 2
+FAIL Google step 2: native Google test timed out
+Traceback (most recent call last):
+  File "/mnt/HaikuWork/apps/mail/tests/native_google_fixture.py", line 80, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/HaikuWork/apps/mail/tests/native_google_fixture.py", line 70, in main
+    assert result.returncode == 0, f'Native Google UI test exited {result.returncode}'
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Native Google UI test exited 1

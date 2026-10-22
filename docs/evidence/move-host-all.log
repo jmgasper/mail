@@ -1,0 +1,37 @@
+Test project /mnt/HaikuWork/apps/mail/build-host
+      Start  1: mail_text_clusters
+ 1/16 Test  #1: mail_text_clusters ...............   Passed    0.33 sec
+      Start  2: mail_core
+ 2/16 Test  #2: mail_core ........................   Passed    1.34 sec
+      Start  3: mail_snooze
+ 3/16 Test  #3: mail_snooze ......................   Passed    0.13 sec
+      Start  4: mail_organization
+ 4/16 Test  #4: mail_organization ................   Passed    0.15 sec
+      Start  5: mail_gmail_store
+ 5/16 Test  #5: mail_gmail_store .................   Passed    0.31 sec
+      Start  6: mail_compose
+ 6/16 Test  #6: mail_compose .....................   Passed    0.39 sec
+      Start  7: mail_preview
+ 7/16 Test  #7: mail_preview .....................   Passed    0.10 sec
+      Start  8: mail_reader
+ 8/16 Test  #8: mail_reader ......................   Passed    0.28 sec
+      Start  9: mail_clipboard
+ 9/16 Test  #9: mail_clipboard ...................   Passed    1.63 sec
+      Start 10: mail_compose_mime
+10/16 Test #10: mail_compose_mime ................   Passed    0.47 sec
+      Start 11: mail_sent
+11/16 Test #11: mail_sent ........................   Passed   12.20 sec
+      Start 12: mail_protocol
+12/16 Test #12: mail_protocol ....................   Passed    3.52 sec
+      Start 13: mail_moves
+13/16 Test #13: mail_moves .......................   Passed   19.77 sec
+      Start 14: mail_google
+14/16 Test #14: mail_google ......................   Passed    2.74 sec
+      Start 15: mail_organization_sync
+15/16 Test #15: mail_organization_sync ...........   Passed    1.58 sec
+      Start 16: mail_gmail_sync
+16/16 Test #16: mail_gmail_sync ..................   Passed    2.04 sec
+
+100% tests passed, 0 tests failed out of 16
+
+Total Test time (real) =  46.97 sec

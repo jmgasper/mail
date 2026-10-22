@@ -1,0 +1,791 @@
+Initial app_server team: 118
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 1: passed; app_server team 118 unchanged
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 2: passed; app_server team 118 unchanged
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 3: passed; app_server team 118 unchanged
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 4: passed; app_server team 118 unchanged
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 5: passed; app_server team 118 unchanged
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 6: passed; app_server team 118 unchanged
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 7: passed; app_server team 118 unchanged
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 8: passed; app_server team 118 unchanged
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 9: passed; app_server team 118 unchanged
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Weighted sequence 👩🏽‍💻: weight 400, size 13, overlap 0.589, aligned 0.604 (0,1), ink 1.093
+Weighted sequence 🇦🇺: weight 400, size 13, overlap 0.509, aligned 0.640 (0,1), ink 1.016
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 13, overlap 0.941, aligned 0.941 (0,0), ink 1.030
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 13, overlap 0.955, aligned 0.955 (0,0), ink 1.017
+Weighted sequence 1️⃣: weight 400, size 13, overlap 0.712, aligned 0.753 (0,1), ink 1.052
+Weighted sequence 🏳️‍🌈: weight 400, size 13, overlap 0.525, aligned 0.586 (0,1), ink 0.996
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 13, overlap 0.579, aligned 0.579 (0,0), ink 0.995
+Weighted sequence 👍🏽: weight 400, size 13, overlap 0.767, aligned 0.767 (0,0), ink 1.006
+Weighted sequence 🎉: weight 400, size 13, overlap 0.991, aligned 0.991 (0,0), ink 1.009
+Weighted sequence 😀: weight 400, size 13, overlap 0.992, aligned 0.992 (0,0), ink 1.008
+Emoji label weight 400, size 13: minimum raster overlap 0.579
+Weighted sequence 👩🏽‍💻: weight 400, size 24, overlap 0.643, aligned 0.643 (0,0), ink 1.035
+Weighted sequence 🇦🇺: weight 400, size 24, overlap 0.734, aligned 0.734 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 24, overlap 0.897, aligned 0.897 (0,0), ink 0.987
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 24, overlap 0.875, aligned 0.875 (0,0), ink 0.965
+Weighted sequence 1️⃣: weight 400, size 24, overlap 0.861, aligned 0.861 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 400, size 24, overlap 0.597, aligned 0.597 (0,0), ink 1.017
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 24, overlap 0.808, aligned 0.808 (0,0), ink 1.031
+Weighted sequence 👍🏽: weight 400, size 24, overlap 0.779, aligned 0.779 (0,0), ink 1.002
+Weighted sequence 🎉: weight 400, size 24, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Weighted sequence 😀: weight 400, size 24, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Emoji label weight 400, size 24: minimum raster overlap 0.597
+Weighted sequence 👩🏽‍💻: weight 400, size 64, overlap 0.717, aligned 0.717 (0,0), ink 0.985
+Weighted sequence 🇦🇺: weight 400, size 64, overlap 0.859, aligned 0.859 (0,0), ink 1.009
+Weighted sequence 👨‍👩‍👧‍👦: weight 400, size 64, overlap 0.821, aligned 0.845 (-1,1), ink 1.003
+Weighted sequence 👩‍👩‍👧‍👧: weight 400, size 64, overlap 0.792, aligned 0.861 (-1,1), ink 1.019
+Weighted sequence 1️⃣: weight 400, size 64, overlap 0.922, aligned 0.922 (0,0), ink 1.039
+Weighted sequence 🏳️‍🌈: weight 400, size 64, overlap 0.815, aligned 0.815 (0,0), ink 1.076
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 400, size 64, overlap 0.830, aligned 0.830 (0,0), ink 1.003
+Weighted sequence 👍🏽: weight 400, size 64, overlap 0.864, aligned 0.864 (0,0), ink 0.994
+Weighted sequence 🎉: weight 400, size 64, overlap 0.981, aligned 0.981 (0,0), ink 0.997
+Weighted sequence 😀: weight 400, size 64, overlap 0.977, aligned 0.977 (0,0), ink 1.000
+Emoji label weight 400, size 64: minimum raster overlap 0.717
+Weighted sequence 👩🏽‍💻: weight 700, size 13, overlap 0.627, aligned 0.627 (0,0), ink 1.063
+Original header defect: synthetic/reference ink ratio 2.540; designed/reference 1.063
+Weighted sequence 🇦🇺: weight 700, size 13, overlap 0.717, aligned 0.717 (0,0), ink 0.980
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 13, overlap 0.932, aligned 0.932 (0,0), ink 1.010
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 13, overlap 0.937, aligned 0.937 (0,0), ink 1.018
+Weighted sequence 1️⃣: weight 700, size 13, overlap 0.722, aligned 0.791 (0,1), ink 1.032
+Weighted sequence 🏳️‍🌈: weight 700, size 13, overlap 0.635, aligned 0.635 (0,0), ink 1.000
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 13, overlap 0.595, aligned 0.595 (0,0), ink 0.987
+Weighted sequence 👍🏽: weight 700, size 13, overlap 0.822, aligned 0.822 (0,0), ink 0.924
+Weighted sequence 🎉: weight 700, size 13, overlap 0.994, aligned 0.994 (0,0), ink 1.006
+Weighted sequence 😀: weight 700, size 13, overlap 0.993, aligned 0.993 (0,0), ink 1.007
+Emoji label weight 700, size 13: minimum raster overlap 0.595
+Weighted sequence 👩🏽‍💻: weight 700, size 24, overlap 0.767, aligned 0.767 (0,0), ink 1.005
+Weighted sequence 🇦🇺: weight 700, size 24, overlap 0.864, aligned 0.864 (0,0), ink 1.020
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 24, overlap 0.890, aligned 0.890 (0,0), ink 1.042
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 24, overlap 0.901, aligned 0.901 (0,0), ink 1.060
+Weighted sequence 1️⃣: weight 700, size 24, overlap 0.888, aligned 0.888 (0,0), ink 1.028
+Weighted sequence 🏳️‍🌈: weight 700, size 24, overlap 0.797, aligned 0.797 (0,0), ink 1.015
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 24, overlap 0.838, aligned 0.838 (0,0), ink 1.026
+Weighted sequence 👍🏽: weight 700, size 24, overlap 0.822, aligned 0.822 (0,0), ink 1.018
+Weighted sequence 🎉: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Weighted sequence 😀: weight 700, size 24, overlap 0.995, aligned 0.995 (0,0), ink 1.005
+Emoji label weight 700, size 24: minimum raster overlap 0.767
+Weighted sequence 👩🏽‍💻: weight 700, size 64, overlap 0.854, aligned 0.854 (0,0), ink 0.986
+Weighted sequence 🇦🇺: weight 700, size 64, overlap 0.864, aligned 0.864 (0,0), ink 1.012
+Weighted sequence 👨‍👩‍👧‍👦: weight 700, size 64, overlap 0.942, aligned 0.942 (0,0), ink 1.001
+Weighted sequence 👩‍👩‍👧‍👧: weight 700, size 64, overlap 0.926, aligned 0.926 (0,0), ink 1.012
+Weighted sequence 1️⃣: weight 700, size 64, overlap 0.959, aligned 0.959 (0,0), ink 1.015
+Weighted sequence 🏳️‍🌈: weight 700, size 64, overlap 0.782, aligned 0.782 (0,0), ink 0.976
+Weighted sequence 👩🏾‍❤️‍👩🏼: weight 700, size 64, overlap 0.900, aligned 0.900 (0,0), ink 0.999
+Weighted sequence 👍🏽: weight 700, size 64, overlap 0.811, aligned 0.811 (0,0), ink 0.994
+Weighted sequence 🎉: weight 700, size 64, overlap 0.988, aligned 0.988 (0,0), ink 0.998
+Weighted sequence 😀: weight 700, size 64, overlap 0.982, aligned 0.982 (0,0), ink 1.000
+Emoji label weight 700, size 64: minimum raster overlap 0.782
+Emoji font cache: 274 faces, 2492144 font bytes, maximum 3784 faces
+Native emoji sequences: 341 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)
+Font lifetime cycle 10: passed; app_server team 118 unchanged

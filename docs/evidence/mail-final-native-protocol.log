@@ -1,0 +1,2 @@
+37 protocol assertions passed
+Server checks passed: encrypted authentication, PEEK, retained POP3 mail, SMTP recipients and dot transparency

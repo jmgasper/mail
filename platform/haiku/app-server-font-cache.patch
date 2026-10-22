@@ -1,0 +1,68 @@
+diff --git a/src/data/package_infos/generic/haiku b/src/data/package_infos/generic/haiku
+index e20d94287d..30861149aa 100644
+--- a/src/data/package_infos/generic/haiku
++++ b/src/data/package_infos/generic/haiku
+@@ -24,6 +24,8 @@ provides {
+ #else
+ 	haiku=%HAIKU_VERSION% compat>=R1~beta1
+ #endif
++	/* Cached memory fonts retain their data across client exit. */
++	haiku_private_font_cache = 1
+ 	cmd:arp
+ 	cmd:chop
+ 	cmd:clear
+diff --git a/src/servers/app/ServerFont.h b/src/servers/app/ServerFont.h
+index e385a9a182..8624939fdc 100644
+--- a/src/servers/app/ServerFont.h
++++ b/src/servers/app/ServerFont.h
+@@ -184,6 +184,8 @@ class ServerFont {
+ 
+ 			FontManager*		Manager() const
+ 									{ return fStyle->Manager(); }
++			FontStyle*			GetStyle() const
++									{ return fStyle.Get(); }
+ 
+ 			void  				SetFontData(FT_Byte* location, uint32 size);
+ 			uint32				FontDataSize() const
+diff --git a/src/servers/app/font/FontCacheEntry.cpp b/src/servers/app/font/FontCacheEntry.cpp
+index 74684620dc..6eae49ac16 100644
+--- a/src/servers/app/font/FontCacheEntry.cpp
++++ b/src/servers/app/font/FontCacheEntry.cpp
+@@ -152,6 +152,8 @@ FontCacheEntry::Init(const ServerFont& font, bool forceVector)
+ 	if (!fGlyphCache.IsSet())
+ 		return false;
+ 
++	fFontStyle.SetTo(font.GetStyle());
++
+ 	glyph_rendering renderingType = _RenderTypeFor(font, forceVector);
+ 
+ 	// TODO: encoding from font
+@@ -400,9 +402,11 @@ FontCacheEntry::GenerateSignature(char* signature, size_t signatureSize,
+ 	bool hinting = font.Hinting();
+ 	uint8 averageWeight = gSubpixelAverageWeight;
+ 
++	// Manager addresses and family/style IDs can be reused after an app
++	// exits. This retained style stays unique for the cache entry's lifetime.
+ 	snprintf(signature, signatureSize,
+-		"%" B_PRId32 ",%p,%u,%d,%d,%.2f,%d,%d,%d",
+-		font.GetFamilyAndStyle(), font.Manager(), charMap,
++		"%" B_PRId32 ",%p,%p,%u,%d,%d,%.2f,%d,%d,%d",
++		font.GetFamilyAndStyle(), font.Manager(), font.GetStyle(), charMap,
+ 		font.Face(), int(renderingType), font.Size(), hinting, averageWeight,
+ 		font.IsDeviceScaled());
+ }
+diff --git a/src/servers/app/font/FontCacheEntry.h b/src/servers/app/font/FontCacheEntry.h
+index e3a18ebbcc..4c78b48263 100644
+--- a/src/servers/app/font/FontCacheEntry.h
++++ b/src/servers/app/font/FontCacheEntry.h
+@@ -147,6 +147,10 @@ class FontCacheEntry : public MultiLocker, public BReferenceable {
+ 
+ 			ObjectDeleter<GlyphCachePool>
+ 								fGlyphCache;
++			// FreeType's memory face borrows the style's font data. Retain it
++			// until after fEngine is destroyed, including after its app exits.
++			BReference<FontStyle>
++								fFontStyle;
+ 			FontEngine			fEngine;
+ 
+ 	static	BLocker				sUsageUpdateLock;

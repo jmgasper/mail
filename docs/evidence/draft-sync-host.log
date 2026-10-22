@@ -1,0 +1,43 @@
+Test project /mnt/HaikuWork/apps/mail/build-host
+      Start  1: mail_text_clusters
+ 1/19 Test  #1: mail_text_clusters ...............   Passed    0.33 sec
+      Start  2: mail_core
+ 2/19 Test  #2: mail_core ........................   Passed    2.11 sec
+      Start  3: mail_snooze
+ 3/19 Test  #3: mail_snooze ......................   Passed    0.18 sec
+      Start  4: mail_organization
+ 4/19 Test  #4: mail_organization ................   Passed    0.17 sec
+      Start  5: mail_gmail_store
+ 5/19 Test  #5: mail_gmail_store .................   Passed    0.34 sec
+      Start  6: mail_draft_store
+ 6/19 Test  #6: mail_draft_store .................   Passed    0.52 sec
+      Start  7: mail_compose
+ 7/19 Test  #7: mail_compose .....................   Passed    0.40 sec
+      Start  8: mail_preview
+ 8/19 Test  #8: mail_preview .....................   Passed    0.08 sec
+      Start  9: mail_reader
+ 9/19 Test  #9: mail_reader ......................   Passed    0.23 sec
+      Start 10: mail_clipboard
+10/19 Test #10: mail_clipboard ...................   Passed    1.41 sec
+      Start 11: mail_compose_mime
+11/19 Test #11: mail_compose_mime ................   Passed    0.51 sec
+      Start 12: mail_sent
+12/19 Test #12: mail_sent ........................   Passed   12.51 sec
+      Start 13: mail_protocol
+13/19 Test #13: mail_protocol ....................   Passed    3.52 sec
+      Start 14: mail_moves
+14/19 Test #14: mail_moves .......................   Passed   26.73 sec
+      Start 15: mail_google
+15/19 Test #15: mail_google ......................   Passed    2.62 sec
+      Start 16: mail_gmail_drafts
+16/19 Test #16: mail_gmail_drafts ................   Passed    2.67 sec
+      Start 17: mail_gmail_draft_sync
+17/19 Test #17: mail_gmail_draft_sync ............   Passed    2.32 sec
+      Start 18: mail_organization_sync
+18/19 Test #18: mail_organization_sync ...........   Passed    1.75 sec
+      Start 19: mail_gmail_sync
+19/19 Test #19: mail_gmail_sync ..................   Passed    2.20 sec
+
+100% tests passed, 0 tests failed out of 19
+
+Total Test time (real) =  60.59 sec

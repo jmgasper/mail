@@ -1,0 +1,41 @@
+# Vendored dependencies
+
+## JSON
+
+`nlohmann/json.hpp` is the unmodified single header from nlohmann/json v3.12.0
+(MIT, copyright Niels Lohmann). Its license is included alongside it.
+
+Source: https://github.com/nlohmann/json/releases/tag/v3.12.0
+
+SHA-256:
+
+- `json.hpp`: `aaf127c04cb31c406e5b04a63f1ae89369fccde6d8fa7cdda1ed4f32dfc5de63`
+- `LICENSE.MIT`: `46a65cffd1ea955132d95a8dd921640714a8d6b537d2e4e482d31145ae95b603`
+
+## Noto Emoji
+
+`noto-emoji/NotoEmoji.ttf` is the unmodified Google Fonts variable font
+`NotoEmoji[wght].ttf`, renamed on disk for build-tool convenience. Its internal
+font names and bytes are unchanged. Copyright Google LLC; SIL Open Font License
+1.1 is included as `noto-emoji/OFL.txt` and embedded with the font in each native
+Mail executable. CMake installation also installs a readable copy of the license.
+
+Source: [google/fonts, commit 8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5](https://github.com/google/fonts/tree/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notoemoji).
+Upstream metadata and commit ID are retained in that directory.
+
+SHA-256:
+
+- `NotoEmoji.ttf`: `de6c18832938afc99caf132b39d6a30a19bac7f2e812e28db2535b4608d27551`
+- `OFL.txt`: `500bb1ccf43df7bbb522112f9133a52b16e1c35e809632f5d8609b179152de5b`
+
+Mail loads the embedded font through Haiku's per-application font API. It does
+not install or replace system fonts. HarfBuzz shapes supported emoji sequences,
+pins the variable font's default axes and subsets the resulting glyphs for
+native text layout. These transient derivatives use the family `Mail Emoji
+Layout`, retain the source copyright/license name records, and live only for
+the application session. The bundled source font remains byte-for-byte unchanged.
+
+This is a monochrome outline font: flags show letter-code designs, and skin
+tones use its monochrome treatment. Unsupported sequences retain scalar fallback.
+The OS window decorator continues to use system fonts. Native sequence rendering
+requires the [app_server lifetime fix](../platform/haiku/README.md).

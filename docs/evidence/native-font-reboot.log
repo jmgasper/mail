@@ -1,0 +1,30 @@
+Wed Oct 21 09:49:03 GMT 2026
+                  Name  Type     State    Enabled
+-------------------------------------------------
+[;1mx-vnd.haiku-app_server[0m  service  [32;1mrunning[0m  yes    
+
+Details: BMessage(0x0) {
+        name = string("x-vnd.haiku-app_server", 23 bytes)
+        team = int32(0x74 or 116)
+        enabled = bool(true)
+        running = bool(true)
+        launched = bool(true)
+        service = bool(true)
+        launch = string("/boot/system/non-packaged/servers/app_server", 45 bytes)
+        port = BMessage(0x0) {
+                capacity = int32(0xc8 or 200)
+                port = int32(0x5f or 95)
+        }
+}
+6ca524b957548383c62c15293587e2fa6b323af30e3fd5b579d421e6640eca63  /boot/system/non-packaged/servers/app_server
+Sequence 👩🏽‍💻: original glyph 1455, raster overlap 0.717
+Sequence 🇦🇺: original glyph 1626, raster overlap 0.859
+Sequence 👨‍👩‍👧‍👦: original glyph 1486, raster overlap 0.821
+Sequence 👩‍👩‍👧‍👧: original glyph 1497, raster overlap 0.792
+Sequence 1️⃣: original glyph 1550, raster overlap 0.922
+Sequence 🏳️‍🌈: original glyph 1875, raster overlap 0.815
+Sequence 👩🏾‍❤️‍👩🏼: original glyph 646, raster overlap 0.830
+Sequence 👍🏽: original glyph 578, raster overlap 0.864
+Emoji font cache: 263 faces, 674776 font bytes, maximum 1892 faces
+Native emoji sequences: 123 checks passed
+Native typography: 53 checks passed (glyphs, rich styles, subject, typing, clipboard, undo/redo, MIME and run coalescing)

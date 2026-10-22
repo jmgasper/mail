@@ -1,0 +1,36 @@
+Disposable package database: /boot/home/mail-package-Vub7IV/mail.db
+The following changes will be made:
+  in system:
+    install package airos_mail-0.1.0~dev1-3 from local file
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_10:51:31"
+[system] Cleaning up ...
+[system] Done.
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+Native package: 63 checks passed (fresh install, Deskbar launch, metadata, installed app/helper, draft edit and persistence)
+The following changes will be made:
+  in system:
+    upgrade package airos_mail-0.1.0~dev1-3 to 0.1.0~dev1-4 from local file
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_11:11:03"
+[system] Cleaning up ...
+[system] Done.
+resolve symbol "FcConfigSetDefaultSubstitute" returned: -2147478780
+MESA: error: ZINK: vkEnumeratePhysicalDevices failed (VK_ERROR_INITIALIZATION_FAILED)
+MESA: error: ZINK: failed to choose pdev
+AddOnManager::_RegisterDecoder(): plugin->GetSupportedFormats(...) failed!
+Native package: 51 checks passed (after upgrade, Deskbar launch, metadata, installed app/helper, draft edit and persistence)
+The following changes will be made:
+  in system:
+    uninstall package airos_mail-0.1.0~dev1-4
+Continue? [yes/no] (yes) : yes
+[system] Applying changes ...
+[system] Changes applied. Old activation state backed up in "state_2026-10-21_11:11:08"
+[system] Cleaning up ...
+[system] Done.
+Package lifecycle passed: install, native launch/edit/preview, upgrade, reopen, removal; draft database and legacy Mail preserved.

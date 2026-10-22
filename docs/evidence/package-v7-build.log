@@ -1,0 +1,17 @@
+ninja: no work to do.
+-- Install configuration: "Release"
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-3T1yyS/apps/airOS-Mail/Mail
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-3T1yyS/apps/airOS-Mail/MailPreview
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-3T1yyS/documentation/packages/airos_mail/LICENSE
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-3T1yyS/documentation/packages/airos_mail/README.md
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-3T1yyS/documentation/packages/airos_mail/GOOGLE_SETUP.md
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-3T1yyS/documentation/packages/airos_mail/third_party/noto-emoji/OFL.txt
+-- Installing: /mnt/HaikuWork/apps/mail/.cache/package-stage-3T1yyS/documentation/packages/airos_mail/third_party/nlohmann/LICENSE.MIT
+----- Package Info ----------------
+header size:                     80
+heap size:                  3512549
+TOC size:                      1801
+package attributes size:        971
+total size:                 3512629
+-----------------------------------
+/mnt/HaikuWork/apps/mail/artifacts/airos_mail-0.1.0~dev1-7-x86_64.hpkg

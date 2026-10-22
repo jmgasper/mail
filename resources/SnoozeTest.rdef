@@ -1,0 +1,2 @@
+resource app_signature "application/x-vnd.air-Mail-Snooze-Test";
+resource app_flags B_SINGLE_LAUNCH;

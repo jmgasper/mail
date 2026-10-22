@@ -1,0 +1,30 @@
+Preparing disposable draft test credentials
+Draft UI step 7
+Draft UI step 1
+Draft UI step 2
+Draft UI step 3
+Draft UI step 4
+Draft UI step 5
+Draft UI step 6
+Draft UI step 10
+Draft UI step 11
+Draft UI step 12
+Draft UI step 13
+Draft UI step 14
+Draft UI step 15
+Draft UI step 16
+Draft UI step 20
+Draft UI step 21
+Draft UI step 22
+Draft UI step 23
+Draft UI step 24
+Draft UI step 25
+FAIL draft UI step 25: native draft test timed out
+Traceback (most recent call last):
+  File "/mnt/HaikuWork/apps/mail/tests/gmail_draft_sync_fixture.py", line 183, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/HaikuWork/apps/mail/tests/gmail_draft_sync_fixture.py", line 174, in main
+    assert result.returncode == 0, result.returncode
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1

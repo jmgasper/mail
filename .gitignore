@@ -1,0 +1,9 @@
+build*/
+.cache/
+artifacts/
+__pycache__/
+*.db
+*.db-shm
+*.db-wal
+google-client.json
+Mail.google-client.json

@@ -1,0 +1,27 @@
+Test project /mnt/HaikuWork/apps/mail/build-host
+    Start 12: mail_sent
+1/4 Test #12: mail_sent ........................   Passed   12.67 sec
+    Start 13: mail_protocol
+2/4 Test #13: mail_protocol ....................   Passed    3.47 sec
+    Start 14: mail_moves
+3/4 Test #14: mail_moves .......................   Passed   26.46 sec
+    Start 15: mail_imap_drafts
+4/4 Test #15: mail_imap_drafts .................***Failed    1.89 sec
+FAIL: Choose a configured sending account.
+Traceback (most recent call last):
+  File "/mnt/HaikuWork/apps/mail/tests/imap_draft_fixture.py", line 161, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/HaikuWork/apps/mail/tests/imap_draft_fixture.py", line 150, in main
+    assert result.returncode == 0, result.returncode
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1
+
+
+75% tests passed, 1 tests failed out of 4
+
+Total Test time (real) =  44.50 sec
+
+The following tests FAILED:
+	 15 - mail_imap_drafts (Failed)
+Errors while running CTest

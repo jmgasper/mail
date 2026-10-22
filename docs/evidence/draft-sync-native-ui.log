@@ -1,0 +1,10 @@
+Preparing disposable draft test credentials
+Draft UI step 7
+Draft UI step 1
+Draft UI step 2
+Draft UI step 3
+Draft UI step 4
+Draft UI step 5
+Draft UI step 6
+Native Gmail drafts: 14 checks passed (import, background save, live editor protection and conflict review)
+Draft synchronization provider verified: TLS, pagination, independent MIME parsing, remote edits and interrupted writes.

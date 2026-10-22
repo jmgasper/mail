@@ -1,0 +1,2 @@
+101 Gmail draft transport and MIME checks passed
+Draft server verified: MIME, Unicode names, BCC, repeated CID images, stable draft IDs, changing message IDs, exact mutation counts, no uncertain replay or credential redirect.
