@@ -1,0 +1,27 @@
+// Mail's toolbar and mailbox icons. Most are Haiku's own vector artwork (MIT),
+// copied by tools/extract-haiku-icons.py; tag/attachment come from tools/make-ui-icons.py.
+resource(301, "Mail:icon:account") #'VICN' import "icons/account.hvif";
+resource(302, "Mail:icon:archive") #'VICN' import "icons/archive.hvif";
+resource(303, "Mail:icon:attachment") #'VICN' import "icons/attachment.hvif";
+resource(304, "Mail:icon:check") #'VICN' import "icons/check.hvif";
+resource(305, "Mail:icon:computer") #'VICN' import "icons/computer.hvif";
+resource(306, "Mail:icon:delete") #'VICN' import "icons/delete.hvif";
+resource(307, "Mail:icon:draft") #'VICN' import "icons/draft.hvif";
+resource(308, "Mail:icon:file") #'VICN' import "icons/file.hvif";
+resource(309, "Mail:icon:folder") #'VICN' import "icons/folder.hvif";
+resource(310, "Mail:icon:forward") #'VICN' import "icons/forward.hvif";
+resource(311, "Mail:icon:inbox") #'VICN' import "icons/inbox.hvif";
+resource(312, "Mail:icon:junk") #'VICN' import "icons/junk.hvif";
+resource(313, "Mail:icon:mailboxes") #'VICN' import "icons/mailboxes.hvif";
+resource(314, "Mail:icon:message") #'VICN' import "icons/message.hvif";
+resource(315, "Mail:icon:new") #'VICN' import "icons/new.hvif";
+resource(316, "Mail:icon:query") #'VICN' import "icons/query.hvif";
+resource(317, "Mail:icon:read") #'VICN' import "icons/read.hvif";
+resource(318, "Mail:icon:reply") #'VICN' import "icons/reply.hvif";
+resource(319, "Mail:icon:send") #'VICN' import "icons/send.hvif";
+resource(320, "Mail:icon:snooze") #'VICN' import "icons/snooze.hvif";
+resource(321, "Mail:icon:star") #'VICN' import "icons/star.hvif";
+resource(322, "Mail:icon:star-off") #'VICN' import "icons/star-off.hvif";
+resource(323, "Mail:icon:tag") #'VICN' import "icons/tag.hvif";
+resource(324, "Mail:icon:trash") #'VICN' import "icons/trash.hvif";
+resource(325, "Mail:icon:unread") #'VICN' import "icons/unread.hvif";

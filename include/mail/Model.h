@@ -16,7 +16,7 @@ struct Endpoint {
     int port = 0;
     Security security = Security::TLS;
     std::string username;
-    std::string certificate; // Explicit CA file for a local Bridge certificate.
+    std::string certificate; // Trusted CA/server certificate file, or PEM text; empty uses system trust.
 };
 
 struct Account {

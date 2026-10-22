@@ -24,9 +24,10 @@ void verifyGmailIdentity(const Account& account, const GmailProfile& profile)
         throw NetworkError(NetworkFailure::Authentication, "This Google sign-in belongs to a different account. Sign in with " + account.email + ".");
 }
 SyncReport syncGmailAccount(Store& store, const Account& account, GmailApi& api, const std::atomic<bool>& cancelled,
-    const std::function<void(const std::string&)>& progress)
+    const SyncProgressFunction& progress)
 {
     SyncReport report; checkCancelled(cancelled);
+    if (progress) progress({"Connecting to " + account.name + "…"});
     auto profile = api.profile(); verifyGmailIdentity(account, profile);
     auto labels = api.labels(); store.saveGmailLabels(account.id, labels);
     auto labelChanges=store.labelChanges(account.id);
@@ -131,9 +132,10 @@ SyncReport syncGmailAccount(Store& store, const Account& account, GmailApi& api,
         } catch (const HttpError& error) { if (error.status != 404) throw; full = true; changed.clear(); }
     }
     std::vector<std::string> deleted;
+    std::size_t done = 0, total = full ? 0 : changed.size();
     auto receive = [&](const std::string& id) {
         checkCancelled(cancelled);
-        if (progress) progress("Checking " + account.name + " — Gmail");
+        if (progress) progress({(full ? "Downloading " : "Updating ") + account.name + " — Gmail", 0, 0, done++, total});
         bool known = store.findRemote(account.id, "gmail:" + id) != 0;
         try {
             auto remote=api.message(id,!known);

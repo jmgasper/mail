@@ -50,6 +50,20 @@ int main()
         m.text.assign(8*1024*1024+1,'x');rejects([&]{encodePreview(snapshot);},"oversized received body is bounded");m.text="text";
         m.html=std::string(200,' ');for(int i=0;i<140;++i)m.html+="<div>";m.html+="nested";for(int i=0;i<140;++i)m.html+="</div>";
         rejects([&]{render();},"excessive HTML depth uses the reader fallback");
+        {
+            ReceivedPreview first=m,second=m;first.id=11;second.id=12;first.thread.clear();second.thread.clear();
+            first.html="<p>Visit <a href='https://example.test/a?b=1&c=2'>site</a> <a href='javascript:bad()'>bad</a></p>";
+            second.html.clear();second.text="See http://example.test/x. Or mailto:someone@example.test, not ftp://example.test/";
+            auto doc=conversationHtml({first,second},"mail-preview://conv/",false);
+            check(doc.find("href=\"https://example.test/a?b=1&amp;c=2\" target=\"_blank\"")!=std::string::npos,"conversation keeps web links as new-page targets");
+            check(doc.find("javascript:")==std::string::npos || doc.find("href=\"javascript:")==std::string::npos,"script links are never clickable");
+            check(doc.find("href=\"http://example.test/x\"")!=std::string::npos && doc.find("href=\"mailto:someone@example.test\"")!=std::string::npos,"plain text addresses become links without trailing punctuation");
+            check(doc.find("href=\"ftp:")==std::string::npos,"other schemes stay text");
+            check(doc.find("<details class=\"mail-message\"><summary")!=std::string::npos && doc.find("<details class=\"mail-message\" open>")!=std::string::npos,"older messages collapse and the newest is open");
+            check(conversationHtml({first,second},"mail-preview://conv/",false,{11}).find("<details class=\"mail-message\"><summary")==std::string::npos,"expanded messages start open");
+            check(!openableLink("https://") && !openableLink("https://a b") && openableLink("HTTPS://example.test"),"link validation");
+            rejects([&]{conversationHtml({first},"https://example.test/",false);},"conversation resource root cannot be external");
+        }
         const std::string seed="<table><tr><td style='color:red'>café &amp; text</td></tr></table><img src='cid:image@test'><svg><script>bad()</script></svg>";
         for(std::size_t i=0;i<500;++i) {m.html=seed;auto pos=(i*17)%seed.size();m.html[pos]=static_cast<char>((i*43)%256);try{render();}catch(const std::invalid_argument&){}}
         std::cout<<checks<<" received reader checks passed; 500 mutated HTML inputs parsed under bounded limits\n";return 0;

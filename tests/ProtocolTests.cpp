@@ -1,7 +1,9 @@
 #include "mail/Provider.h"
 #include "mail/Sync.h"
 #include "mail/Outbox.h"
+#include <fstream>
 #include <iostream>
+#include <iterator>
 
 using namespace mail;
 namespace {
@@ -115,6 +117,22 @@ int main(int argc,char** argv)
         report=syncAccount(store,a,"test-password",cancel);
         expect(report.errors.empty() && report.applied==2 && store.pendingChanges(a.id).empty(),"sync applies and acknowledges durable local edits");
         expect(store.message(message.id).unread && !store.message(message.id).starred,"post-sync reconciliation preserves applied edits");
+        std::ifstream caFile(argv[2]); std::string ca((std::istreambuf_iterator<char>(caFile)),std::istreambuf_iterator<char>());
+        auto expected=describeCertificate(ca);
+        expect(expected.selfSigned && expected.sha256.size()==95,"certificate details include a SHA-256 fingerprint");
+        Endpoint probe{argv[1],std::stoi(argv[3]),Security::TLS,"",""};
+        expect(fetchServerCertificate(probe,"imap",cancel).sha256==expected.sha256,"implicit TLS presents the server certificate");
+        probe.port=std::stoi(argv[4]); probe.security=Security::StartTLS;
+        expect(fetchServerCertificate(probe,"imap",cancel).pem==expected.pem,"IMAP STARTTLS certificate is retrieved before login");
+        probe.port=std::stoi(argv[6]);
+        expect(fetchServerCertificate(probe,"pop3",cancel).sha256==expected.sha256,"POP3 STARTTLS certificate is retrieved");
+        probe.port=std::stoi(argv[8]);
+        expect(fetchServerCertificate(probe,"smtp",cancel).sha256==expected.sha256,"SMTP STARTTLS certificate is retrieved");
+        auto flattened=ca; for (auto& c:flattened) if (c=='\n') c=' ';
+        auto pasted=account(argv[1],flattened,std::stoi(argv[3]),std::stoi(argv[7]),Provider::Imap,Security::TLS);
+        expect(!connectMail(pasted,"test-password",cancel)->folders().empty(),"pasted certificate text, even flattened to one line, is trusted");
+        pasted.incoming.certificate="-----BEGIN CERTIFICATE----- not base64! -----END CERTIFICATE-----";
+        rejects([&]{connectMail(pasted,"test-password",cancel);},"invalid pasted certificate text is rejected");
         std::cout<<assertions<<" protocol assertions passed\n"; return 0;
     } catch (const std::exception& error) { std::cerr<<"FAIL: "<<error.what()<<'\n'; return 1; }
 }

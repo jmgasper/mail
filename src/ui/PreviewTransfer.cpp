@@ -64,7 +64,13 @@ void LaunchPreview(const PreviewSnapshot& snapshot,const BMessenger& owner)
 {
     app_info info; require(be_app && be_app->GetAppInfo(&info)==B_OK,"Could not locate Mail.");
     BEntry executable(&info.ref),parent; BPath path; require(executable.GetParent(&parent)==B_OK && parent.GetPath(&path)==B_OK,"Could not locate Mail's preview application.");
-    path.Append("MailPreview"); entry_ref ref; require(get_ref_for_path(path.Path(),&ref)==B_OK,"Install MailPreview beside Mail to preview messages.");
+    // A development build keeps MailPreview beside Mail; the package installs
+    // Mail as apps/Mail, like Haiku's Mail, and the helper as lib/mail/MailPreview.
+    BPath beside(path); beside.Append("MailPreview");
+    BPath installed(path); installed.Append("../lib/mail/MailPreview",true);
+    entry_ref ref;
+    require(get_ref_for_path(beside.Path(),&ref)==B_OK || (installed.InitCheck()==B_OK && get_ref_for_path(installed.Path(),&ref)==B_OK),
+        "MailPreview is missing. Reinstall Mail to preview messages.");
     auto transfer=WritePreviewTransfer(snapshot,owner); const char* args[]={transfer.c_str()};
     auto status=be_roster->Launch(&ref,1,args);
     if(status!=B_OK && status!=B_ALREADY_RUNNING) { unlink(transfer.c_str()); throw std::runtime_error("Could not open the message preview. Check that the air/OS WebKit runtime is installed."); }

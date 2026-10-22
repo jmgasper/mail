@@ -43,8 +43,8 @@ int main(int argc, char** argv)
         auto omitted = store.ingestGmail(account.id, cached("omitted"));
         GmailApi api([](bool) { return "fixture-access"; }, cancel, endpoints);
         bool injected = false;
-        auto full = syncGmailAccount(store, account, api, cancel, [&](const std::string&) {
-            if (injected) return;
+        auto full = syncGmailAccount(store, account, api, cancel, [&](const SyncProgress& progress) {
+            if (injected || progress.text.rfind("Downloading", 0) != 0) return;
             injected = true;
             Draft draft; draft.account = account.id; draft.to = "recipient@example.test"; draft.subject = "Concurrent send"; draft.text = "Sent during receive";
             auto id = store.saveDraft(draft); auto queued = store.enqueueDraft(id, 1792542600); store.claimOutgoing();

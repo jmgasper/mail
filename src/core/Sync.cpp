@@ -6,12 +6,13 @@
 
 namespace mail {
 SyncReport syncAccount(Store& store,const Account& account,const std::string& password,
-    const std::atomic<bool>& cancelled,const std::function<void(const std::string&)>& progress)
+    const std::atomic<bool>& cancelled,const SyncProgressFunction& progress)
 {
     SyncReport report;
     auto checkCancelled=[&] {
         if (cancelled) throw NetworkError(NetworkFailure::Cancelled,"Checking mail was cancelled.");
     };
+    if (progress) progress({"Connecting to "+account.name+"…"});
     auto provider=connectMail(account,password,cancelled);
     auto folders=provider->folders();
     if (!account.sentFolder.empty()) {
@@ -97,15 +98,21 @@ SyncReport syncAccount(Store& store,const Account& account,const std::string& pa
         movingFolders.insert(pending.remote.source.folder);
         movingFolders.insert(pending.remote.destination.folder);
     }
+    std::size_t step=0;
     for (const auto& folder : folders) {
-        checkCancelled();
+        checkCancelled(); ++step;
         if (movingFolders.count(folder.id)) continue;
-        if (progress) progress("Checking "+account.name+" — "+folder.name);
+        auto label=account.name+" — "+folder.name;
+        if (progress) progress({"Checking "+label,step,folders.size()});
         try {
             const auto snapshot=provider->snapshot(folder);
-            for (const auto& entry : snapshot.messages) {
+            std::vector<const RemoteMessage*> missing;
+            for (const auto& entry : snapshot.messages) if (!store.findRemote(account.id,entry.key)) missing.push_back(&entry);
+            std::size_t done=0;
+            for (const auto* pending : missing) {
                 checkCancelled();
-                if (store.findRemote(account.id,entry.key)) continue;
+                const auto& entry=*pending;
+                if (progress) progress({"Downloading "+label,step,folders.size(),done++,missing.size()});
                 auto message=parseMessage(provider->fetch(snapshot,entry));
                 message.account=account.id; message.remoteKey=entry.key; message.folder=folder.localName();
                 message.unread=entry.unread; message.starred=entry.starred;
@@ -140,7 +147,7 @@ SyncReport syncAccount(Store& store,const Account& account,const std::string& pa
             }
             if (targets.size()!=1) throw NetworkError(NetworkFailure::Unsupported,"Choose one server Sent folder in Accounts. The delivered message is kept locally.");
             const auto& folder=targets.front();
-            if (progress) progress("Checking Sent copy — "+account.name);
+            if (progress) progress({"Checking Sent copy — "+account.name});
             auto found=provider->findMessage(folder,copy.messageId);
             if (found) { store.bindSentCopy(copy.id,*found); continue; }
             if (sentCopyMode(account)==SentCopyMode::Server) {

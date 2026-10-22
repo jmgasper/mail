@@ -6,6 +6,7 @@
 #include <set>
 #include <stdexcept>
 #include <string_view>
+#include <cstring>
 
 namespace mail {
 namespace {
@@ -30,9 +31,43 @@ std::string cid(std::string value)
     }
     return result;
 }
+bool hasPrefix(const std::string& text,const char* prefix) { return lower(text.substr(0,std::string_view(prefix).size()))==prefix; }
+// Plain text with web and mail addresses turned into links.
+std::string linkedText(const std::string& text)
+{
+    std::string out; auto lowered=lower(text);
+    for(std::size_t at=0;at<text.size();) {
+        std::size_t next=std::string::npos; for(const char* scheme:{"https://","http://","mailto:"}) next=std::min(next,lowered.find(scheme,at));
+        if(next==std::string::npos) { out+=escapeHtml(std::string_view(text).substr(at)); break; }
+        auto end=next; while(end<text.size() && static_cast<unsigned char>(text[end])>32 && !std::strchr("<>\"'",text[end])) ++end;
+        while(end>next && std::strchr(".,;:!?)]",text[end-1])) --end;
+        auto url=text.substr(next,end-next);
+        out+=escapeHtml(std::string_view(text).substr(at,next-at));
+        if(openableLink(url)) out+="<a href=\""+escapeHtml(url)+"\" target=\"_blank\" rel=\"noreferrer\" title=\""+escapeHtml(url)+"\">"+escapeHtml(url)+"</a>";
+        else out+=escapeHtml(url);
+        at=std::max(end,next+1);
+    }
+    return out;
+}
+// Plain text with links, and quoted lines ("> ...") set apart.
+std::string plainHtml(const std::string& text)
+{
+    std::string out="<div class=\"mail-plain\">";
+    for(std::size_t at=0;at<=text.size();) {
+        auto end=text.find('\n',at); if(end==std::string::npos) end=text.size();
+        auto line=text.substr(at,end-at); if(!line.empty() && line.back()=='\r') line.pop_back();
+        bool quoted=!line.empty() && line[0]=='>';
+        out+=quoted?"<span class=\"mail-quote\">"+linkedText(line)+"</span>":linkedText(line);
+        if(end<text.size()) out+='\n';
+        at=end+1;
+    }
+    return out+"</div>";
+}
 class HtmlReader {
 public:
-    HtmlReader(const ReceivedPreview& message,const std::string& root):fMessage(message),fRoot(root) {}
+    // With links, http(s) and mailto anchors open a new page that the reader
+    // hands to the system instead of navigating the document.
+    HtmlReader(const ReceivedPreview& message,const std::string& root,bool links=false):fMessage(message),fRoot(root),fLinks(links) {}
     std::string Read()
     {
         // HTML parsing never requests a DTD or enables XML entity substitution.
@@ -94,6 +129,7 @@ private:
                         }
                         if(tag=="img") fOutput+=" src=\""+image+"\" alt=\""+escapeHtml(attribute(node,"alt"))+"\"";
                         if(tag=="a" && attribute(node,"title").empty()) fOutput+=" title=\""+escapeHtml(attribute(node,"href"))+"\"";
+                        if(tag=="a" && fLinks && openableLink(attribute(node,"href"))) fOutput+=" href=\""+escapeHtml(attribute(node,"href"))+"\" target=\"_blank\" rel=\"noreferrer\"";
                         auto background=Image(attribute(node,"background"));
                         if(!background.empty()) fOutput+=" background=\""+background+"\"";
                         fOutput+='>';
@@ -107,6 +143,7 @@ private:
     }
     const ReceivedPreview& fMessage;
     const std::string& fRoot;
+    bool fLinks;
     std::string fOutput;
     std::size_t fNodes=0;
 };
@@ -131,6 +168,57 @@ void validateReceivedPreview(const ReceivedPreview& m)
     std::set<Id> ids;
     for(const auto& item:m.thread) require(item.id>0 && ids.insert(item.id).second && item.sender.size()<=8192 && item.date.size()<=8192,"Invalid conversation summary.");
     require(ids.empty() || ids.count(m.id),"This message is not in the previewed conversation.");
+}
+bool openableLink(const std::string& url)
+{
+    if(url.size()>8192 || url.find_first_of(std::string("\0\r\n\t \"<>",8))!=std::string::npos) return false;
+    return (hasPrefix(url,"https://") || hasPrefix(url,"http://")) ? url.size()>(hasPrefix(url,"https://")?8:7) : (hasPrefix(url,"mailto:") && url.size()>7);
+}
+std::string conversationHtml(const std::vector<ReceivedPreview>& messages,const std::string& root,bool plain,const std::set<Id>& expanded)
+{
+    previewDocument({},root);
+    std::string body="<div class=\"mail-conversation\">";
+    for(std::size_t k=0;k<messages.size();++k) {
+        const auto& m=messages[k]; validateReceivedPreview(m);
+        auto messageRoot=root+"m"+std::to_string(k)+"/";
+        std::string content;
+        try { content=plain || m.html.empty()?plainHtml(m.text):HtmlReader(m,messageRoot,true).Read(); }
+        catch(const std::invalid_argument&) { content=plainHtml(m.text); }
+        auto snippet=m.text.substr(0,240); for(auto& c:snippet) if(c=='\r' || c=='\n' || c=='\t') c=' ';
+        std::string files;
+        for(const auto& f:m.files) if(!f.inlineImage) files+="<span class=\"mail-file\">"+escapeHtml(f.name)+"</span>";
+        body+=std::string("<details class=\"mail-message\"")+(expanded.count(m.id) || k+1==messages.size()?" open":"")+"><summary class=\"mail-header\">"
+            "<span class=\"mail-date\">"+escapeHtml(m.date)+"</span><span class=\"mail-from\">"+escapeHtml(m.from)+"</span>"
+            "<span class=\"mail-snippet\">"+escapeHtml(snippet)+"</span>"
+            "<span class=\"mail-recipients\">To: "+escapeHtml(m.to)+(m.cc.empty()?"":"<br>Cc: "+escapeHtml(m.cc))+"</span></summary>"
+            +(files.empty()?"":"<div class=\"mail-files\">"+files+"</div>")+"<div class=\"mail-body\">"+content+"</div></details>";
+        if(body.size()>totalLimit) throw std::invalid_argument("This conversation is too large to show formatted.");
+    }
+    body+="</div>";
+    auto document=previewDocument(body,root);
+    // The reader's own chrome. Sender styles come later in the body and may
+    // restyle message content, but these rules keep the headers readable.
+    static const char style[]="<style>"
+        "body{margin:0!important;padding:0!important;background:#fff!important;color:#222}"
+        ".mail-conversation{padding:8px 12px 24px}"
+        ".mail-message{border:1px solid #d8d8d8!important;border-radius:4px;margin:0 0 10px!important;background:#fff!important;overflow:hidden}"
+        ".mail-header{display:block!important;list-style:none;cursor:default;padding:8px 12px!important;background:#f3f3f3!important;color:#222!important;font:13px sans-serif!important;line-height:1.4!important}"
+        ".mail-header::-webkit-details-marker{display:none}"
+        ".mail-from{font-weight:bold!important;display:block}"
+        ".mail-date{float:right;color:#666!important;margin-left:12px}"
+        ".mail-snippet{display:block;color:#666!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"
+        ".mail-recipients{display:none;color:#555!important;font-size:12px!important}"
+        "details[open]>.mail-header .mail-snippet{display:none}"
+        "details[open]>.mail-header .mail-recipients{display:block}"
+        ".mail-body{padding:12px 14px;overflow-x:auto;overflow-wrap:anywhere}"
+        ".mail-plain{white-space:pre-wrap;font:13px/1.45 MailEmoji,sans-serif}"
+        ".mail-quote{color:#5a6b7d;display:inline-block;border-left:3px solid #c8d3df;padding-left:8px}"
+        ".mail-files{padding:6px 12px 0}"
+        ".mail-file{display:inline-block;margin:0 6px 4px 0;padding:2px 8px;border:1px solid #ccc;border-radius:10px;font:12px sans-serif;color:#333;background:#fafafa}"
+        ".mail-unavailable-image{color:#888;font-style:italic}"
+        "</style>";
+    auto at=document.find("</head>"); document.insert(at,style);
+    return document;
 }
 std::string receivedHtml(const ReceivedPreview& message,const std::string& root,bool plain)
 {

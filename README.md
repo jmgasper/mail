@@ -104,16 +104,33 @@ detailed test history and future enhancements.
   Gmail label renaming and removal, with pending changes and failures visible.
 - MIME multipart, quoted-printable/base64, encoded headers, character set
   conversion, inline-image metadata, and binary attachment storage.
-- An original 383-byte Haiku vector icon and its editable generator.
+- Haiku's own Mail icon, since this Mail replaces Haiku's.
 
-The main reader shows plain text. Double-click a received conversation, select
-**Formatted view**, or use **Message → View formatted conversation** (Command-P)
-to open its HTML and attached images in a separate native window. The message
-picker moves through the conversation; **Show plain text** switches to the
-original text alternative. Opening a message leaves its unread state unchanged.
-Scripts, forms and embedded documents are removed, remote content is blocked,
-and links remain inert with their destinations in tooltips. Missing and remote
-images leave readable placeholders. The raw message and HTML are retained.
+The main window shows the selected conversation formatted, in place, using the
+system web engine: each message appears as a card (older read messages are
+collapsed; click a header to expand it), with HTML, inline images, quoted text
+and attachment names. **Plain text** (Shift-Command-T) switches to the text
+alternative, and **Open in window** (Command-P, or double-click) still opens the
+separate preview window. Without the web engine, the reader falls back to plain
+text. A conversation is marked read after it has been shown for 1.5 seconds.
+Scripts, forms and embedded documents are removed and remote content is blocked.
+Clicking an http(s) link opens it in the preferred browser; mailto links open a
+new message. Missing and remote images leave readable placeholders. The raw
+message and HTML are retained. `MAIL_READER_TRACE=1` logs the reader's
+requests and page loads to standard error.
+
+The sidebar is an outline: unified mailboxes, then each account (its row is its
+inbox) with its server folders, smart folders and tags. Icons are Haiku's own
+vector artwork (see `resources/icons` and `tools/extract-haiku-icons.py`).
+Unread counts appear beside mailboxes. Mail checks and imports show a progress
+bar with the account, folder and message count; the toolbar's Check mail button
+becomes Stop while a check runs. Window size, pane widths, collapsed sections and
+the last mailbox are remembered beside the database (`mail.db.window`).
+
+**File → Make Mail the default email application** makes Mail open email files
+and mailto links instead of Haiku's previous Mail. `Mail message.eml` imports
+messages and `Mail mailto:someone@example.com` starts a new message.
+
 Import currently uses the resolved source path
 as its stable identifier; importing the same file again updates its contents
 without undoing local organization. Moving the source file and importing it
@@ -121,8 +138,11 @@ again can create a second copy.
 
 Open **File → Accounts** to configure both incoming and outgoing servers. Use
 the provider's account or app password. For Proton Mail Bridge, use the username
-and password supplied by Bridge and its local ports. Export Bridge's certificate
-and enter its PEM path in each server's CA certificate field; verification stays
+and password supplied by Bridge and its local ports. For its certificate, use
+**Get from server…** beside **Trusted certificate** (Mail shows the certificate
+and its fingerprint and saves it under `~/config/settings/Mail/certificates`
+when you trust it), or **Choose…** an exported PEM/DER file. Pasted PEM text is
+also accepted and saved to a file; verification stays
 enabled. See [Bridge setup](docs/BRIDGE_SETUP.md) for the export and account
 settings. The native Mail transport is checked against the real air/OS Bridge
 engine with a disposable local Proton API; a live Proton account and the
@@ -264,8 +284,10 @@ The shared OS installation has not been changed.
 
 An x86_64 development package is available under `artifacts/`. See
 [installation instructions](docs/INSTALL.md) and [package building](docs/BUILD_PACKAGE.md).
-It installs `Mail` and `MailPreview` in `apps/airOS-Mail` and adds
-**Applications → airOS → Mail** in Deskbar, preserving Haiku's legacy Mail.
+It installs `Mail` as `apps/Mail`, replacing Haiku's Mail, with its preview
+helper in `lib/mail`, the **Applications → Mail** Deskbar entry and Haiku's Mail
+icon. air/OS x86_64 images build it from the pin in airos-ci's
+`apps/mail.lock.json` and leave Haiku's Mail out.
 The native package test exercises install, real application/preview launch,
 painted image pixels, draft editing, upgrade, signature-based reopen and
 uninstall with saved data intact.
@@ -525,9 +547,10 @@ Both core and native tests pass on the air/OS test image. See the
 [joined-emoji capture](docs/evidence/native-emoji-sequences.png), and
 [verification record](docs/STATUS.md).
 
-Regenerate the icon and previews with `python3 tools/make-icon.py` (Pillow and
-NumPy are needed only for the host previews). The application uses HVIF, never
-the PNG previews. `tools/hvif.py` is the MIT-licensed codec shared with AirPins.
+`tools/extract-haiku-icons.py` copies the application icon (Haiku's Mail
+icon) and the mailbox/toolbar icons from a Haiku source tree;
+`tools/make-ui-icons.py` draws the two icons Haiku has no match for. The
+application uses HVIF, never the PNG previews. `tools/hvif.py` is the MIT-licensed codec shared with AirPins.
 
 ## Design and protocol references
 

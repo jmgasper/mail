@@ -23,7 +23,8 @@
 namespace {
 constexpr const char* kMail="application/x-vnd.air-Mail";
 constexpr const char* kPreview="application/x-vnd.air-Mail-Preview";
-constexpr const char* kInstalled="/boot/system/apps/airOS-Mail/";
+constexpr const char* kInstalledMail="/boot/system/apps/Mail";
+constexpr const char* kInstalledPreview="/boot/system/lib/mail/MailPreview";
 int checks=0;
 void check(bool ok,const char* why){++checks;if(!ok)throw std::runtime_error(why);}
 std::string path(const entry_ref& ref){BEntry entry(&ref,true);BPath result;check(entry.GetPath(&result)==B_OK,"resolve executable path");return result.Path();}
@@ -40,7 +41,7 @@ BMessenger window(const char* signature,const std::string& title)
 }
 void metadata(const char* app,const char* signature)
 {
-    BFile file((std::string(kInstalled)+app).c_str(),B_READ_ONLY);check(file.InitCheck()==B_OK,"installed executable exists");
+    BFile file((std::string(app)=="Mail"?kInstalledMail:kInstalledPreview),B_READ_ONLY);check(file.InitCheck()==B_OK,"installed executable exists");
     BAppFileInfo info(&file);char type[B_MIME_TYPE_LENGTH]={};
     check(info.GetSignature(type)==B_OK && std::string(type)==signature,"package MIME attributes preserve the app signature");
     uint32 flags=0;check(info.GetAppFlags(&flags)==B_OK && (flags&B_LAUNCH_MASK)==B_SINGLE_LAUNCH,"package keeps single-launch flags");
@@ -91,8 +92,8 @@ public:
             // The installed app owns this database while running. Inspect its
             // writes only after exit, avoiding a second native SQLite writer.
             fStore.reset();fStarted=system_time();
-            BEntry entry("/boot/system/data/deskbar/menu/Applications/airOS/Mail",true);entry_ref ref;
-            check(entry.GetRef(&ref)==B_OK && path(ref)==std::string(kInstalled)+"Mail","Deskbar link resolves to the packaged Mail");
+            BEntry entry("/boot/system/data/deskbar/menu/Applications/Mail",true);entry_ref ref;
+            check(entry.GetRef(&ref)==B_OK && path(ref)==kInstalledMail,"Deskbar link resolves to the packaged Mail");
             const char* args[]={"--database",fDatabase.c_str()};
             auto status=fSeed?be_roster->Launch(&ref,2,args,&fTeam):be_roster->Launch(kMail,2,args,&fTeam);
             check(status==B_OK,"launch packaged Mail through Deskbar or registered signature after upgrade");
@@ -107,7 +108,7 @@ public:
             check(system_time()-fStarted<50000000,"packaged app interaction timed out");
             if(fStep==0){
                 auto main=window(kMail,"Mail");if(!main.IsValid())return;
-                app_info info;check(be_roster->GetAppInfo(kMail,&info)==B_OK && info.team==fTeam && path(info.ref)==std::string(kInstalled)+"Mail","roster runs the packaged executable");
+                app_info info;check(be_roster->GetAppInfo(kMail,&info)==B_OK && info.team==fTeam && path(info.ref)==kInstalledMail,"roster runs the packaged executable");
                 BMessage open('mopd');open.AddInt64("draft",fDraft.id);check(main.SendMessage(&open)==B_OK,"open persisted draft in installed app");++fStep;
             }else if(fStep==1){
                 fComposer=window(kMail,fDraft.subject);if(!fComposer.IsValid())return;
@@ -115,7 +116,7 @@ public:
                 check(fComposer.SendMessage('pvrf')==B_OK,"installed composer opens its adjacent preview helper");++fStep;
             }else if(fStep==2){
                 if(!window(kPreview,"Preview — "+fDraft.subject).IsValid())return;
-                app_info info;check(be_roster->GetAppInfo(kPreview,&info)==B_OK && path(info.ref)==std::string(kInstalled)+"MailPreview","roster runs the packaged helper");++fStep;
+                app_info info;check(be_roster->GetAppInfo(kPreview,&info)==B_OK && path(info.ref)==kInstalledPreview,"roster runs the packaged helper");++fStep;
             }else if(fStep==3){
                 if(!previewPainted(window(kPreview,"Preview — "+fDraft.subject)))return;
                 check(true,"packaged preview paints all four fixture image quadrants");

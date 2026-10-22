@@ -1,9 +1,14 @@
 # Building Mail packages
 
-Mail's package name is `airos_mail`; the application remains **Mail**. The
-version is currently `0.1.0~dev1`. Both executables are installed under
-`apps/airOS-Mail`, with a Deskbar link at `Applications/airOS/Mail`, so the
-package coexists with Haiku's legacy application.
+Mail's package name is `airos_mail`; the application is **Mail**, and it
+replaces Haiku's Mail. Local builds are `0.1.0~dev1-REVISION`; air/OS images
+build `0.1.0~gitDATE-1` from the commit pinned in airos-ci's
+`apps/mail.lock.json` (`MAIL_VERSION` sets it). The package installs
+`apps/Mail` (with Haiku's Mail icon), its preview helper as
+`lib/mail/MailPreview`, the Deskbar entry **Applications → Mail**, and a
+post-install script that opens email messages and mailto links in it. air/OS
+x86_64 images leave Haiku's Mail out; on a system that still has it, this
+package's `apps/Mail` and Deskbar entry take its place.
 
 ## Build on Haiku
 

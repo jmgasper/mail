@@ -15,6 +15,7 @@ class BCardView;
 class BButton;
 class BStringView;
 class BTextView;
+class BFilePanel;
 namespace mail::ui {
 constexpr uint32 kAccountsChanged='macC';
 constexpr uint32 kAccountsClosed='macX';
@@ -28,6 +29,8 @@ private:
     struct ServerFields {
         BTextControl *host,*port,*username,*password,*certificate;
         BMenuField* security;
+        BButton *choose,*fetch;
+        bool outgoing;
     };
     void Reload();
     void Load(const Account&);
@@ -38,8 +41,16 @@ private:
     void CommitGoogle();
     void SetGoogleBusy(bool);
     Endpoint ReadEndpoint(const ServerFields&) const;
-    BView* MakeServer(const char* name,ServerFields& fields);
+    BView* MakeServer(const char* name,ServerFields& fields,bool outgoing);
     void SetServer(ServerFields&,const Endpoint&);
+    void SetDefaultPort(ServerFields&);
+    void ChooseCertificate(bool outgoing);
+    void CertificateChosen(BMessage*);
+    void FetchCertificate(bool outgoing);
+    void FinishCertificate(BMessage*);
+    void UpdateCertificateTip(ServerFields&);
+    std::string TrustedCertificate(ServerFields&,const std::string& host,int port);
+    int ProviderType() const;
     std::shared_ptr<Store> fStore;
     BMessenger fOwner;
     std::vector<Account> fAccounts;
@@ -55,7 +66,11 @@ private:
     BButton *fGoogleSignIn,*fGoogleRevoke,*fSave,*fAdd,*fRemove;
     BStringView *fNote,*fHint;
     BTextView* fGoogleStatus;
-    std::thread fGoogleWorker;
+    std::thread fGoogleWorker,fCertificateWorker;
+    std::atomic<bool> fCancelCertificate{false};
+    std::unique_ptr<BFilePanel> fCertificatePanel;
+    bool fFetching=false;
+    int fProviderType=0;
     std::atomic<bool> fCancelGoogle{false};
     bool fGoogleBusy=false,fRevoking=false,fRevoked=false,fCloseAfterGoogle=false;
     Account fGoogleAccount;

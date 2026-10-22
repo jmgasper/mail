@@ -96,6 +96,7 @@ public:
     Message message(Id);
     std::vector<Message> thread(Id);
     std::vector<Conversation> conversations(const Query&, Timestamp now);
+    std::size_t unreadConversations(const Query&, Timestamp now); // Conversations with unread mail in a view.
     void setRead(Id message, bool read);
     void setStarred(Id message, bool starred);
     void move(Id message, const std::string& folder);

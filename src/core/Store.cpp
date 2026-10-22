@@ -601,10 +601,10 @@ std::vector<Message> Store::thread(Id id)
     while (s.step()) out.push_back(readMessage(s.number(0)));
     return out;
 }
-std::vector<Conversation> Store::conversations(const Query& q, Timestamp now)
+namespace {
+// Messages visible in a view, as a common table expression named "matching".
+std::string matchingSql(bool search)
 {
-    std::lock_guard<std::mutex> guard(mutex_);
-    std::string search = searchExpression(q.text);
     std::string sql = R"SQL(WITH matching AS (
 SELECT m.*, EXISTS(SELECT 1 FROM attachments a WHERE a.message_id=m.id) AS has_attachment,
 ROW_NUMBER() OVER(PARTITION BY thread_id ORDER BY received DESC,m.id DESC) AS rank
@@ -629,20 +629,38 @@ AND (?5=0 OR EXISTS(SELECT 1 FROM attachments att WHERE att.message_id=m.id))
 AND (?6='' OR EXISTS(SELECT 1 FROM effective_tags t WHERE t.message_id=m.id AND t.name=?6))
 AND ((?7=1 AND snoozed_until>?9) OR (?7=0 AND (?8=1 OR snoozed_until<=?9)))
 )SQL";
-    if (!search.empty()) sql += " AND m.id IN(SELECT rowid FROM message_search WHERE message_search MATCH ?10)";
-    sql += R"SQL()
+    if (search) sql += " AND m.id IN(SELECT rowid FROM message_search WHERE message_search MATCH ?10)";
+    return sql + ")";
+}
+void bindQuery(Statement& s, const Query& q, Timestamp now, const std::string& search)
+{
+    s.bind(1, q.account); s.bind(2, q.folder); s.bind(3, q.unread); s.bind(4, q.starred);
+    s.bind(5, q.attachments); s.bind(6, q.tag); s.bind(7, q.snoozedOnly); s.bind(8, q.includeSnoozed); s.bind(9, now);
+    if (!search.empty()) s.bind(10, search);
+}
+}
+std::vector<Conversation> Store::conversations(const Query& q, Timestamp now)
+{
+    std::lock_guard<std::mutex> guard(mutex_);
+    std::string search = searchExpression(q.text);
+    std::string sql = matchingSql(!search.empty()) + R"SQL(
 SELECT thread_id,account_id,
 MAX(CASE WHEN rank=1 THEN subject END),MAX(CASE WHEN rank=1 THEN sender END),
 MAX(CASE WHEN rank=1 THEN substr(body,1,180) END),MAX(received),COUNT(*),SUM(unread),MAX(starred),MAX(has_attachment)
 FROM matching GROUP BY thread_id ORDER BY MAX(received) DESC,thread_id DESC)SQL";
-    Statement s(db_, sql.c_str());
-    s.bind(1, q.account); s.bind(2, q.folder); s.bind(3, q.unread); s.bind(4, q.starred);
-    s.bind(5, q.attachments); s.bind(6, q.tag); s.bind(7, q.snoozedOnly); s.bind(8, q.includeSnoozed); s.bind(9, now);
-    if (!search.empty()) s.bind(10, search);
+    Statement s(db_, sql.c_str()); bindQuery(s, q, now, search);
     std::vector<Conversation> out;
     while (s.step()) out.push_back({s.number(0),s.number(1),s.text(2),s.text(3),s.text(4),s.number(5),
         static_cast<int>(s.number(6)),static_cast<int>(s.number(7)),s.number(8)!=0,s.number(9)!=0});
     return out;
+}
+std::size_t Store::unreadConversations(const Query& q, Timestamp now)
+{
+    std::lock_guard<std::mutex> guard(mutex_);
+    std::string search = searchExpression(q.text);
+    Statement s(db_, (matchingSql(!search.empty()) + " SELECT COUNT(DISTINCT thread_id) FROM matching WHERE unread=1").c_str());
+    bindQuery(s, q, now, search);
+    return s.step() ? static_cast<std::size_t>(s.number(0)) : 0;
 }
 
 void Store::setRead(Id id, bool read)

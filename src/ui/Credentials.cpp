@@ -84,7 +84,10 @@ GoogleClient ReadGoogleClient()
     if (be_app && be_app->GetAppInfo(&info)==B_OK) {
         BEntry executable(&info.ref),parent; BPath path;
         if (executable.GetParent(&parent)==B_OK && parent.GetPath(&path)==B_OK) {
+            // A development build keeps it beside Mail; the package in data/mail.
+            BPath installed(path); installed.Append("../data/mail/google-client.json",true);
             path.Append("Mail.google-client.json"); candidates.emplace_back(path.Path());
+            if (installed.InitCheck()==B_OK) candidates.emplace_back(installed.Path());
         }
     }
     for (const auto& path : candidates) {
@@ -96,7 +99,7 @@ GoogleClient ReadGoogleClient()
         if (file.Read(text.data(),text.size())!=size) throw std::runtime_error("Could not read the Google desktop client file.");
         return parseGoogleClient(text);
     }
-    throw std::runtime_error("Google sign-in is not configured in this build. Put the Google Desktop app client JSON in ~/config/settings/Mail/google-client.json, or install Mail.google-client.json beside Mail. See Mail's Google setup instructions.");
+    throw std::runtime_error("Google sign-in is not configured in this build. Put the Google Desktop app client JSON in ~/config/settings/Mail/google-client.json, or install it as data/mail/google-client.json in Mail's package. See Mail's Google setup instructions.");
 }
 void OpenGoogleBrowser(const std::string& url)
 {

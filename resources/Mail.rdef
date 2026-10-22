@@ -1,5 +1,12 @@
 resource app_signature "application/x-vnd.air-Mail";
 resource app_flags B_SINGLE_LAUNCH;
+// Messages and mailto links Mail can open. Use Mail → Make Mail the default
+// email application (or FileTypes) to prefer it over Haiku's Mail.
+resource file_types message {
+    "types" = "text/x-email",
+    "types" = "message/rfc822",
+    "types" = "application/x-vnd.Be.URL.mailto"
+};
 resource app_version {
     major = 0,
     middle = 1,

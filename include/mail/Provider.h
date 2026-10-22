@@ -1,5 +1,6 @@
 #pragma once
 #include "Model.h"
+#include "Certificates.h"
 #include <atomic>
 #include <functional>
 #include <memory>
@@ -94,4 +95,8 @@ std::unique_ptr<MailProvider> connectMail(const Account&, const std::string& pas
 // explicit user decision before retrying.
 void sendSmtp(const Account&, const std::string& password, const std::string& from,
     const std::vector<std::string>& recipients, const std::string& raw, const std::atomic<bool>& cancelled);
+// Connects without credentials and without verification to show the server's
+// own certificate (the leaf) for an explicit trust decision. scheme is imap,
+// pop3 or smtp; the endpoint's security selects implicit TLS or STARTTLS.
+CertificateDetails fetchServerCertificate(const Endpoint&, const std::string& scheme, const std::atomic<bool>& cancelled);
 }

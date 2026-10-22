@@ -15,7 +15,7 @@ MAIL_PACKAGE_SEED_TEST=${MAIL_PACKAGE_SEED_TEST:-$MAIL_BUILD/mail_native_package
 MAIL_SSH=(-i "$MAIL_VM_KEY" -o IdentitiesOnly=yes -o BatchMode=yes
     -o "UserKnownHostsFile=$MAIL_VM_KNOWN_HOSTS" -o ConnectTimeout=10)
 ssh "${MAIL_SSH[@]}" -p "$MAIL_VM_PORT" user@127.0.0.1 \
-    'test ! -e /boot/system/apps/airOS-Mail/Mail && mkdir -p /boot/home/mail-check'
+    'test ! -e /boot/system/lib/mail/MailPreview && mkdir -p /boot/home/mail-check'
 for revision in "$MAIL_PACKAGE_BEFORE_REVISION" "$MAIL_PACKAGE_AFTER_REVISION"; do
     scp -O "${MAIL_SSH[@]}" -P "$MAIL_VM_PORT" \
         "$MAIL_ARTIFACTS/airos_mail-0.1.0~dev1-$revision-x86_64.hpkg" \
@@ -34,7 +34,6 @@ mv mail_native_package.new mail_native_package
 mv mail_native_package_seed.new mail_native_package_seed
 directory=$(mktemp -d /boot/home/mail-package-XXXXXX)
 echo "Disposable package database: $directory/mail.db"
-legacy=$(sha256sum /boot/system/apps/Mail)
 pkgman install -y -R "./airos_mail-0.1.0~dev1-$1-x86_64.hpkg"
 MAIL_PACKAGE_SCREENSHOT=/boot/home/mail-check/package-installed.png \
     ./mail_native_package_seed seed "$directory/mail.db" package-preview.png
@@ -43,12 +42,10 @@ MAIL_PACKAGE_SCREENSHOT=/boot/home/mail-check/package-upgraded.png \
     ./mail_native_package verify "$directory/mail.db" package-preview.png
 before=$(sha256sum "$directory/mail.db")
 pkgman uninstall -y airos_mail
-test ! -e /boot/system/apps/airOS-Mail/Mail
-test ! -e /boot/system/apps/airOS-Mail/MailPreview
-test ! -e /boot/system/data/deskbar/menu/Applications/airOS/Mail
+test ! -e /boot/system/lib/mail/MailPreview
+test ! -e /boot/system/boot/post-install/mail-default-email.sh
 test "$before" = "$(sha256sum "$directory/mail.db")"
-test "$legacy" = "$(sha256sum /boot/system/apps/Mail)"
-echo "Package lifecycle passed: install, native launch/edit/preview, upgrade, reopen, removal; draft database and legacy Mail preserved."
+echo "Package lifecycle passed: install, native launch/edit/preview, upgrade, reopen, removal; draft database preserved."
 GUEST
 for image in package-installed package-upgraded; do
     scp -O "${MAIL_SSH[@]}" -P "$MAIL_VM_PORT" \

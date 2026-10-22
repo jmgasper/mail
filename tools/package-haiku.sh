@@ -5,6 +5,8 @@ MAIL_ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 MAIL_BUILD=${MAIL_BUILD:-$MAIL_ROOT/build-haiku-release}
 MAIL_ARTIFACTS=${MAIL_ARTIFACTS:-$MAIL_ROOT/artifacts}
 MAIL_PACKAGE_REVISION=${MAIL_PACKAGE_REVISION:-1}
+# CI passes its own version (for example 0.1.0~git20261023.1200-1).
+MAIL_VERSION=${MAIL_VERSION:-0.1.0~dev1-$MAIL_PACKAGE_REVISION}
 MAIL_PACKAGE_TOOL=${MAIL_PACKAGE_TOOL:-package}
 MAIL_MIMESET=${MAIL_MIMESET:-mimeset}
 MAIL_STRIP=${MAIL_STRIP:-strip}
@@ -26,22 +28,24 @@ MAIL_STAGE=$(mktemp -d "$MAIL_ROOT/.cache/package-stage-XXXXXX")
 trap 'rm -rf -- "$MAIL_STAGE"' EXIT
 cmake --install "$MAIL_BUILD" --prefix "$MAIL_STAGE"
 # strip removes appended resources; restore both app metadata and embedded fonts.
-for app in Mail MailPreview; do
-    "$MAIL_STRIP" --strip-debug "$MAIL_STAGE/apps/airOS-Mail/$app"
-    "$MAIL_XRES" -o "$MAIL_STAGE/apps/airOS-Mail/$app" \
-        "$MAIL_BUILD/$app.fonts.rsrc" "$MAIL_BUILD/$app.rsrc"
+# Mail replaces Haiku's Mail: apps/Mail, with its preview helper in lib/mail.
+for app in apps/Mail lib/mail/MailPreview; do
+    "$MAIL_STRIP" --strip-debug "$MAIL_STAGE/$app"
+    "$MAIL_XRES" -o "$MAIL_STAGE/$app" \
+        "$MAIL_BUILD/$(basename "$app").fonts.rsrc" "$MAIL_BUILD/$(basename "$app").rsrc"
 done
-sed -e "s/@REVISION@/$MAIL_PACKAGE_REVISION/g" -e "s/@ARCH@/$MAIL_ARCH/g" \
+sed -e "s/@VERSION@/$MAIL_VERSION/g" -e "s/@SHORT_VERSION@/${MAIL_VERSION%-*}/g" -e "s/@ARCH@/$MAIL_ARCH/g" \
     "$MAIL_ROOT/resources/Mail.PackageInfo.in" > "$MAIL_STAGE/.PackageInfo"
-mkdir -p "$MAIL_STAGE/data/deskbar/menu/Applications/airOS" "$MAIL_STAGE/data/licenses"
-ln -s ../../../../../apps/airOS-Mail/Mail "$MAIL_STAGE/data/deskbar/menu/Applications/airOS/Mail"
+mkdir -p "$MAIL_STAGE/data/deskbar/menu/Applications" "$MAIL_STAGE/data/licenses" "$MAIL_STAGE/boot/post-install"
+ln -s ../../../../apps/Mail "$MAIL_STAGE/data/deskbar/menu/Applications/Mail"
 cp "$MAIL_ROOT/third_party/noto-emoji/OFL.txt" "$MAIL_STAGE/data/licenses/Mail Noto Emoji OFL 1.1"
+install -m 755 "$MAIL_ROOT/resources/mail-post-install.sh" "$MAIL_STAGE/boot/post-install/mail-default-email.sh"
 (
     cd "$MAIL_STAGE"
     "$MAIL_MIMESET" --all -f --mimedb data/mime_db --mimedb "$MAIL_MIME_DB" \
-        apps/airOS-Mail/Mail apps/airOS-Mail/MailPreview
+        apps/Mail lib/mail/MailPreview
 )
-MAIL_OUTPUT="$MAIL_ARTIFACTS/airos_mail-0.1.0~dev1-$MAIL_PACKAGE_REVISION-$MAIL_ARCH.hpkg"
+MAIL_OUTPUT="$MAIL_ARTIFACTS/airos_mail-$MAIL_VERSION-$MAIL_ARCH.hpkg"
 MAIL_PENDING="$MAIL_OUTPUT.new.hpkg"
 "$MAIL_PACKAGE_TOOL" create -C "$MAIL_STAGE" "$MAIL_PENDING"
 "$MAIL_PACKAGE_TOOL" list -a "$MAIL_PENDING" > "$MAIL_OUTPUT.contents.txt.new"

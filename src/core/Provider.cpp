@@ -1,5 +1,6 @@
 #include "mail/Provider.h"
 #include "mail/Mime.h"
+#include "mail/Certificates.h"
 #include <curl/curl.h>
 #include <poll.h>
 #include <algorithm>
@@ -71,6 +72,15 @@ int progress(void* user, curl_off_t, curl_off_t, curl_off_t, curl_off_t)
 {
     return static_cast<const std::atomic<bool>*>(user)->load() ? 1 : 0;
 }
+// A file path, or certificate text saved by an earlier version's paste.
+void trust(CURL* curl, const std::string& certificate)
+{
+    if (isPemText(certificate)) {
+        auto pem = normalizePem(certificate);
+        curl_blob blob{pem.data(), pem.size(), CURL_BLOB_COPY};
+        curlCheck(curl_easy_setopt(curl, CURLOPT_CAINFO_BLOB, &blob));
+    } else if (!certificate.empty()) curlCheck(curl_easy_setopt(curl, CURLOPT_CAINFO, certificate.c_str()));
+}
 std::string url(const Endpoint& endpoint, const std::string& scheme)
 {
     std::string host = endpoint.host;
@@ -88,7 +98,7 @@ void configure(CURL* curl, const Endpoint& endpoint, const std::string& password
     curlCheck(curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L));
     curlCheck(curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L));
     curlCheck(curl_easy_setopt(curl, CURLOPT_SSLVERSION, static_cast<long>(CURL_SSLVERSION_TLSv1_2)));
-    if (!endpoint.certificate.empty()) curlCheck(curl_easy_setopt(curl, CURLOPT_CAINFO, endpoint.certificate.c_str()));
+    trust(curl, endpoint.certificate);
     curlCheck(curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT_MS, 10000L));
     curlCheck(curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 30000L));
     curlCheck(curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L));
@@ -661,14 +671,20 @@ private:
     }
     Connection connection_;
 };
+void validateServer(const Endpoint&);
 void validateEndpoint(const Endpoint& e)
+{
+    validateServer(e);
+    require(!e.username.empty() && !hasControl(e.username),"Enter a valid server username.");
+    require(e.security==Security::TLS || e.security==Security::StartTLS,"Choose TLS or STARTTLS.");
+    if (isPemText(e.certificate)) normalizePem(e.certificate);
+    else require(e.certificate.size()<=4096 && !hasControl(e.certificate),"The certificate path contains an invalid character.");
+}
+void validateServer(const Endpoint& e)
 {
     require(!e.host.empty() && e.host.size()<=253 && !hasControl(e.host) && e.host.find_first_of(" /\\@?#%") == std::string::npos,
         "Enter a server hostname without a URL prefix or path.");
     require(e.port>0 && e.port<=65535,"Enter a port between 1 and 65535.");
-    require(!e.username.empty() && !hasControl(e.username),"Enter a valid server username.");
-    require(e.security==Security::TLS || e.security==Security::StartTLS,"Choose TLS or STARTTLS.");
-    require(!hasControl(e.certificate),"The certificate path contains an invalid character.");
 }
 struct Upload { const std::string& data; std::size_t offset=0; };
 size_t upload(char* bytes,size_t size,size_t count,void* user)
@@ -760,5 +776,39 @@ void sendSmtp(const Account& account,const std::string& password,const std::stri
     if (result!=CURLE_OK && state.offset)
         throw NetworkError(NetworkFailure::DeliveryUnknown,"The connection ended during sending. Delivery is uncertain; check Sent before retrying.");
     curlCheck(result);
+}
+CertificateDetails fetchServerCertificate(const Endpoint& endpoint,const std::string& scheme,const std::atomic<bool>& cancelled)
+{
+    validateServer(endpoint);
+    require(scheme=="imap" || scheme=="pop3" || scheme=="smtp","Unknown mail protocol.");
+    initializeCurl();
+    std::unique_ptr<CURL,decltype(&curl_easy_cleanup)> curl(curl_easy_init(),curl_easy_cleanup);
+    if (!curl) throw std::bad_alloc();
+    if (cancelled) throw NetworkError(NetworkFailure::Cancelled,"Connection cancelled.");
+    // No username or password: libcurl ends the connect phase after TLS or
+    // STARTTLS, before authentication. Verification is off only so the
+    // certificate can be shown for an explicit trust decision.
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_URL,url(endpoint,scheme).c_str()));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_USE_SSL,static_cast<long>(CURLUSESSL_ALL)));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_SSL_VERIFYPEER,0L));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_SSL_VERIFYHOST,0L));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_SSLVERSION,static_cast<long>(CURL_SSLVERSION_TLSv1_2)));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_CERTINFO,1L));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_CONNECT_ONLY,1L));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_CONNECTTIMEOUT_MS,10000L));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_SERVER_RESPONSE_TIMEOUT,15L));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_NOSIGNAL,1L));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_NOPROGRESS,0L));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_XFERINFOFUNCTION,progress));
+    curlCheck(curl_easy_setopt(curl.get(),CURLOPT_XFERINFODATA,&cancelled));
+    if (endpoint.host=="localhost" || endpoint.host=="127.0.0.1" || endpoint.host=="::1")
+        curlCheck(curl_easy_setopt(curl.get(),CURLOPT_PROXY,""));
+    curlCheck(curl_easy_perform(curl.get()));
+    curl_certinfo* chain=nullptr;
+    curlCheck(curl_easy_getinfo(curl.get(),CURLINFO_CERTINFO,&chain));
+    if (!chain || chain->num_of_certs<1) throw NetworkError(NetworkFailure::Protocol,"The server did not present a certificate.");
+    for (auto* entry=chain->certinfo[0];entry;entry=entry->next)
+        if (std::strncmp(entry->data,"Cert:",5)==0) return describeCertificate(entry->data+5);
+    throw NetworkError(NetworkFailure::Protocol,"The server's certificate could not be read.");
 }
 }

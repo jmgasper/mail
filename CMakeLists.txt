@@ -16,6 +16,7 @@ target_include_directories(mail_core PUBLIC include)
 target_sources(mail_core PRIVATE src/core/DraftStore.cpp)
 target_sources(mail_core PRIVATE src/core/GmailDraftSync.cpp)
 target_sources(mail_core PRIVATE src/core/TextClusters.cpp)
+target_sources(mail_core PRIVATE src/core/Certificates.cpp)
 target_include_directories(mail_core SYSTEM PRIVATE third_party)
 target_link_libraries(mail_core PUBLIC SQLite::SQLite3 Iconv::Iconv CURL::libcurl OpenSSL::Crypto LibXml2::LibXml2 ICU::uc ICU::i18n)
 target_compile_options(mail_core PRIVATE -Wall -Wextra -Wpedantic -Werror)
@@ -35,24 +36,35 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
   find_path(MAIL_HARFBUZZ_INCLUDE_DIR hb-subset.h PATH_SUFFIXES harfbuzz REQUIRED)
   find_library(MAIL_HARFBUZZ_LIBRARY harfbuzz REQUIRED)
   find_library(MAIL_HARFBUZZ_SUBSET_LIBRARY harfbuzz-subset REQUIRED)
-  target_sources(mail_ui PRIVATE src/ui/EmojiShaping.cpp)
+  target_sources(mail_ui PRIVATE src/ui/EmojiShaping.cpp src/ui/Icons.cpp)
   target_include_directories(mail_ui SYSTEM PRIVATE "${MAIL_HARFBUZZ_INCLUDE_DIR}")
   target_link_libraries(mail_ui PRIVATE "${MAIL_HARFBUZZ_LIBRARY}" "${MAIL_HARFBUZZ_SUBSET_LIBRARY}")
   target_link_libraries(mail_ui PUBLIC mail_core be tracker translation)
   target_compile_options(mail_ui PRIVATE -Wall -Wextra -Werror -Wno-multichar)
+  # The main window shows messages with the system web engine. Only the reader
+  # sees its headers, which need a newer language standard.
+  find_path(MAIL_WEBKIT_INCLUDE_DIR WebKit/WebKitView.h PATH_SUFFIXES summit-webkit webkit REQUIRED)
+  find_library(MAIL_WEBKIT_LIBRARY NAMES WebKit libWebKit.so.1 PATH_SUFFIXES summit-webkit/lib REQUIRED)
+  target_sources(mail_ui PRIVATE src/ui/ReaderView.cpp)
+  set_source_files_properties(src/ui/ReaderView.cpp PROPERTIES COMPILE_OPTIONS "-std=gnu++23" COMPILE_DEFINITIONS "BUILDING_HAIKU__=1")
+  target_include_directories(mail_ui SYSTEM PRIVATE "${MAIL_WEBKIT_INCLUDE_DIR}")
+  target_link_libraries(mail_ui PUBLIC "${MAIL_WEBKIT_LIBRARY}")
+  target_link_options(mail_ui PUBLIC -Wl,--allow-shlib-undefined)
   add_executable(Mail src/ui/Main.cpp)
   target_link_libraries(Mail PRIVATE mail_ui)
   target_compile_options(Mail PRIVATE -Wall -Wextra -Werror -Wno-multichar)
+  set_target_properties(Mail PROPERTIES BUILD_WITH_INSTALL_RPATH TRUE INSTALL_RPATH "/boot/system/lib/summit-webkit/lib")
   set(MAIL_RC rc CACHE FILEPATH "Haiku resource compiler")
   set(MAIL_XRES xres CACHE FILEPATH "Haiku resource injector")
   function(mail_embed_font target)
     add_custom_command(TARGET ${target} POST_BUILD
       COMMAND ${MAIL_RC} -I ${CMAKE_CURRENT_SOURCE_DIR}/resources
-        -o ${CMAKE_CURRENT_BINARY_DIR}/${target}.fonts.rsrc ${CMAKE_CURRENT_SOURCE_DIR}/resources/Fonts.rdef
+        -o ${CMAKE_CURRENT_BINARY_DIR}/${target}.fonts.rsrc ${CMAKE_CURRENT_SOURCE_DIR}/resources/Fonts.rdef ${CMAKE_CURRENT_SOURCE_DIR}/resources/Icons.rdef
       COMMAND ${MAIL_XRES} -o $<TARGET_FILE:${target}> ${CMAKE_CURRENT_BINARY_DIR}/${target}.fonts.rsrc ${ARGN}
       VERBATIM)
     set_property(TARGET ${target} APPEND PROPERTY LINK_DEPENDS
       ${CMAKE_CURRENT_SOURCE_DIR}/resources/Fonts.rdef
+      ${CMAKE_CURRENT_SOURCE_DIR}/resources/Icons.rdef
       ${CMAKE_CURRENT_SOURCE_DIR}/resources/InlineObject.ttf
       ${CMAKE_CURRENT_SOURCE_DIR}/third_party/noto-emoji/NotoEmoji.ttf
       ${CMAKE_CURRENT_SOURCE_DIR}/third_party/noto-emoji/OFL.txt)
@@ -62,8 +74,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
       -o ${CMAKE_CURRENT_BINARY_DIR}/Mail.rsrc ${CMAKE_CURRENT_SOURCE_DIR}/resources/Mail.rdef
     VERBATIM)
   mail_embed_font(Mail "${CMAKE_CURRENT_BINARY_DIR}/Mail.rsrc")
-  find_path(MAIL_WEBKIT_INCLUDE_DIR WebKit/WebKitView.h PATH_SUFFIXES summit-webkit webkit REQUIRED)
-  find_library(MAIL_WEBKIT_LIBRARY NAMES WebKit libWebKit.so.1 PATH_SUFFIXES summit-webkit/lib REQUIRED)
   add_library(mail_preview_ui src/ui/MessagePreview.cpp)
   target_link_libraries(mail_preview_ui PUBLIC mail_ui "${MAIL_WEBKIT_LIBRARY}")
   target_include_directories(mail_preview_ui SYSTEM PUBLIC "${MAIL_WEBKIT_INCLUDE_DIR}")
@@ -82,8 +92,9 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
   set_property(TARGET MailPreview APPEND PROPERTY LINK_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/resources/Preview.rdef ${CMAKE_CURRENT_SOURCE_DIR}/resources/Mail.hvif)
   set_property(TARGET Mail APPEND PROPERTY LINK_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/Mail.rdef ${CMAKE_CURRENT_SOURCE_DIR}/resources/Mail.hvif)
-  # Keep the helper beside Mail without colliding with Haiku's legacy apps/Mail.
-  install(TARGETS Mail MailPreview RUNTIME DESTINATION apps/airOS-Mail)
+  # Mail replaces Haiku's Mail at apps/Mail; its preview helper is private.
+  install(TARGETS Mail RUNTIME DESTINATION apps)
+  install(TARGETS MailPreview RUNTIME DESTINATION lib/mail)
   install(FILES LICENSE DESTINATION documentation/packages/airos_mail)
   install(FILES docs/INSTALL.md DESTINATION documentation/packages/airos_mail RENAME README.md)
   install(FILES docs/GOOGLE_SETUP.md DESTINATION documentation/packages/airos_mail)
@@ -92,7 +103,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Haiku")
   install(FILES third_party/nlohmann/LICENSE.MIT DESTINATION documentation/packages/airos_mail/third_party/nlohmann)
   if(MAIL_GOOGLE_CLIENT_JSON)
     configure_file("${MAIL_GOOGLE_CLIENT_JSON}" "${CMAKE_CURRENT_BINARY_DIR}/Mail.google-client.json" COPYONLY)
-    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/Mail.google-client.json" DESTINATION apps/airOS-Mail)
+    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/Mail.google-client.json" DESTINATION data/mail RENAME google-client.json)
   endif()
 endif()
 include(CTest)
@@ -297,5 +308,9 @@ if(BUILD_TESTING)
       mail_embed_font(${target})
     endforeach()
     mail_embed_font(mail_native_snooze "${CMAKE_CURRENT_BINARY_DIR}/SnoozeTest.rsrc")
+    # The main window's reader links the system web engine.
+    foreach(target mail_native_smoke mail_native_accounts mail_native_google mail_native_drafts mail_native_typography mail_native_composer mail_native_inline_images mail_native_graphemes mail_native_emoji_sequences mail_native_outbox mail_native_organization mail_native_snooze mail_native_sent mail_native_moves mail_native_attachments)
+      set_target_properties(${target} PROPERTIES BUILD_WITH_INSTALL_RPATH TRUE INSTALL_RPATH "/boot/system/lib/summit-webkit/lib")
+    endforeach()
   endif()
 endif()

@@ -21,10 +21,10 @@ artifacts, then reboot and retry Mail. Other OS builds need a matching update
 that includes both the fix and capability. Mail also requires the modern Summit
 WebKit engine and the libraries listed in the package metadata.
 
-Open **Applications → airOS → Mail** from Deskbar. The application and its
-preview helper are installed together in `apps/airOS-Mail`. Haiku's older Mail
-application remains available separately. Both are called Mail, so use the
-entry in the airOS submenu for this application.
+Open **Applications → Mail** from Deskbar. Mail installs as `apps/Mail` in
+place of Haiku's Mail (air/OS x86_64 images no longer include Haiku's), with
+its preview helper in `lib/mail`. After installation, email messages and
+mailto links open in it.
 
 Use **File → Accounts → Add** to configure an account. For Gmail, follow
 [Google setup](GOOGLE_SETUP.md); a registered Desktop OAuth client is required.
