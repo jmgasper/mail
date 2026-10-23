@@ -37,3 +37,6 @@ requires {
     summit_webkit >= 1.10.1~git20261011.1233
     ca_root_certificates
 }
+post-install-scripts {
+    "boot/post-install/mail-default-email.sh"
+}
