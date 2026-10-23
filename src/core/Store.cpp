@@ -605,8 +605,10 @@ namespace {
 // Messages visible in a view, as a common table expression named "matching".
 std::string matchingSql(bool search)
 {
+    // Only the columns the lists use: the window function materializes every
+    // selected column, and m.* would read each message's raw MIME and HTML.
     std::string sql = R"SQL(WITH matching AS (
-SELECT m.*, EXISTS(SELECT 1 FROM attachments a WHERE a.message_id=m.id) AS has_attachment,
+SELECT m.id,m.thread_id,m.account_id,m.subject,m.sender,m.body,m.received,m.unread,m.starred, EXISTS(SELECT 1 FROM attachments a WHERE a.message_id=m.id) AS has_attachment,
 ROW_NUMBER() OVER(PARTITION BY thread_id ORDER BY received DESC,m.id DESC) AS rank
 FROM messages m JOIN accounts a ON a.id=m.account_id
 WHERE ((?1=0 AND a.unified=1) OR m.account_id=?1)
