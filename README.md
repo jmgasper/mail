@@ -249,6 +249,15 @@ its normal settings directory to mode 0700. SQLite stores mail content, not
 passwords or tokens. Account passwords and Google tokens use Haiku's key store. The OS asks for
 key-ring access when it is first needed.
 
+When SQLite reports damage in the database, Mail leaves `mail.db.needs-repair`
+beside it and repairs it at the next start: the `sqlite3` command's `.recover`
+copies every readable page into a new database, which must pass SQLite's
+integrity and foreign-key checks before it replaces the damaged one. The
+damaged files are kept as `mail.db.damaged-<date>-<time>`. Messages that could
+not be recovered download again: Gmail restarts with a full check, and IMAP
+compares every folder anyway. If nothing usable can be recovered, Mail offers
+to set the damaged database aside and start empty.
+
 The core builds and runs on Linux too; the Interface Kit application is built
 only for Haiku:
 

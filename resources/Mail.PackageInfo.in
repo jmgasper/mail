@@ -26,6 +26,7 @@ requires {
     lib:libharfbuzz
     lib:libharfbuzz_subset
     lib:libsqlite3
+    cmd:sqlite3
     lib:libiconv
     lib:libcurl
     lib:libcrypto >= 3

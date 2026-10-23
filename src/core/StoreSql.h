@@ -1,13 +1,20 @@
 #pragma once
 #include "mail/Model.h"
+#include "mail/Repair.h"
 #include <sqlite3.h>
 #include <stdexcept>
 
 namespace mail::storage {
 inline void check(sqlite3* db, int rc)
 {
-    if (rc != SQLITE_OK && rc != SQLITE_DONE && rc != SQLITE_ROW)
-        throw std::runtime_error(std::string("Mail storage: ") + sqlite3_errmsg(db));
+    if (rc == SQLITE_OK || rc == SQLITE_DONE || rc == SQLITE_ROW) return;
+    std::string message = std::string("Mail storage: ") + sqlite3_errmsg(db);
+    if ((rc & 0xff) == SQLITE_CORRUPT || (rc & 0xff) == SQLITE_NOTADB) {
+        const char* path = db ? sqlite3_db_filename(db, "main") : nullptr;
+        if (path && *path) MarkStoreDamaged(path);
+        throw StoreDamaged(message + ". Quit Mail and open it again to repair its database.");
+    }
+    throw std::runtime_error(message);
 }
 inline void exec(sqlite3* db, const char* sql) { check(db, sqlite3_exec(db, sql, nullptr, nullptr, nullptr)); }
 class Statement {

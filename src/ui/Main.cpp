@@ -1,6 +1,8 @@
 #include "MailWindow.h"
 #include "SnoozeWindow.h"
 #include "ReaderView.h"
+#include "RepairWindow.h"
+#include "mail/Repair.h"
 #include <Alert.h>
 #include <Application.h>
 #include <Directory.h>
@@ -36,8 +38,9 @@ public:
     {
         try {
             auto args=parse(argc,argv);
-            if(!fWindow) { if(!args.database.empty()) fDatabase=args.database; fOpenReminders|=args.reminders; }
+            if(!fWindow && !fRepairing) { if(!args.database.empty()) fDatabase=args.database; fOpenReminders|=args.reminders; }
             else if(!args.database.empty() && args.database!=fDatabase) throw std::invalid_argument("Mail is already using another database. Close it before opening this database.");
+            else if(!fWindow) fOpenReminders|=args.reminders;
             else if(args.reminders) fWindow->PostMessage(mail::ui::kReminders);
             if(args.files.HasRef("refs")) { if(fWindow) fWindow->PostMessage(&args.files); else fFiles=args.files; }
             if(fWindow) for(const auto& link:args.links) OpenLink(link);
@@ -57,15 +60,10 @@ public:
             }
             // Without the web engine, messages are shown as plain text.
             mail::ui::InitializeReaderEngine();
-            fWindow=new mail::ui::MailWindow(std::make_shared<mail::Store>(fDatabase),{},fDatabase);
-            fWindow->Show();
-            if(fOpenReminders) fWindow->PostMessage(mail::ui::kReminders);
-            if(fFiles.HasRef("refs")) fWindow->PostMessage(&fFiles);
-            for(const auto& link:fLinks) OpenLink(link);
-        } catch (const std::exception& error) {
-            (new BAlert("Mail",error.what(),"Quit",nullptr,nullptr,B_WIDTH_AS_USUAL,B_STOP_ALERT))->Go();
-            PostMessage(B_QUIT_REQUESTED);
-        }
+            // Damage found during an earlier run is repaired before opening.
+            if (mail::StoreNeedsRepair(fDatabase)) Repair();
+            else OpenWindow();
+        } catch (const std::exception& error) { Fail(error.what()); }
     }
     void RefsReceived(BMessage* message) override { if (fWindow) fWindow->PostMessage(message); }
     void MessageReceived(BMessage* message) override
@@ -73,6 +71,7 @@ public:
         // Lets scripts and other apps ask for these as they would from the menu.
         switch (message->what) {
             case 'macc': case 'mchk': case 'mnew': if (fWindow) fWindow->PostMessage(message); return;
+            case mail::ui::kRepairDone: Repaired(message); return;
         }
         BApplication::MessageReceived(message);
     }
@@ -88,12 +87,59 @@ public:
         return true;
     }
 private:
+    void OpenWindow()
+    {
+        try {
+            fWindow=new mail::ui::MailWindow(std::make_shared<mail::Store>(fDatabase),{},fDatabase);
+        } catch (const mail::StoreDamaged&) {
+            fWindow=nullptr;
+            if (!fRepaired) { Repair(); return; }
+            throw;
+        }
+        fWindow->Show();
+        if(fOpenReminders) fWindow->PostMessage(mail::ui::kReminders);
+        if(fFiles.HasRef("refs")) fWindow->PostMessage(&fFiles);
+        for(const auto& link:fLinks) OpenLink(link);
+    }
+    void Repair()
+    {
+        fRepairing=true;
+        (new mail::ui::RepairWindow(fDatabase,BMessenger(this)))->Show();
+    }
+    void Repaired(BMessage* message)
+    {
+        fRepairing=false; fRepaired=true;
+        try {
+            if (const char* error; message->FindString("error",&error)==B_OK) {
+                std::string text=std::string("Mail could not repair its database.\n\n")+error
+                    +"\n\nYou can quit and leave the damaged database as it is, or set it aside and start with an empty database. "
+                    "Mail would then need your accounts added again.";
+                if ((new BAlert("Mail",text.c_str(),"Start over","Quit",nullptr,B_WIDTH_AS_USUAL,B_STOP_ALERT))->Go()!=0) { PostMessage(B_QUIT_REQUESTED); return; }
+                auto aside=mail::SetAsideStore(fDatabase);
+                OpenWindow();
+                Notify("Mail started with an empty database. The damaged one was kept at:\n"+aside);
+                return;
+            }
+            OpenWindow();
+            // Messages on lost pages download again with the next check.
+            fWindow->PostMessage('mchk');
+            Notify("Mail repaired its damaged database and kept "+std::to_string(message->GetInt64("messages",0))
+                +" messages. Anything that could not be recovered downloads again while Mail checks your accounts.\n\n"
+                "The damaged copy was kept at:\n"+message->GetString("copy",""));
+        } catch (const std::exception& error) { Fail(error.what()); }
+    }
+    void Notify(const std::string& text) { (new BAlert("Mail",text.c_str(),"OK",nullptr,nullptr,B_WIDTH_AS_USUAL,B_INFO_ALERT))->Go(nullptr); }
+    void Fail(const char* error)
+    {
+        (new BAlert("Mail",error,"Quit",nullptr,nullptr,B_WIDTH_AS_USUAL,B_STOP_ALERT))->Go();
+        PostMessage(B_QUIT_REQUESTED);
+    }
     void OpenLink(const std::string& url) { BMessage link(mail::ui::kReaderLink); link.AddString("url",url.c_str()); fWindow->PostMessage(&link); }
     void RetryQuit() { BMessage quit(B_QUIT_REQUESTED); BMessageRunner::StartSending(BMessenger(this),&quit,100000,1); }
     bool fReleased=false,fDrained=false;
     int fWaits=0;
     std::string fDatabase;
-    bool fOpenReminders=false;
+    bool fOpenReminders=false,fRepairing=false,fRepaired=false;
     BMessage fFiles;
     std::vector<std::string> fLinks;
     mail::ui::MailWindow* fWindow=nullptr;
