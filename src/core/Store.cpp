@@ -82,8 +82,8 @@ Store::Store(const std::string& path)
         exec(db_, "PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL;");
         Id currentVersion=0;
         { Statement version(db_, "PRAGMA user_version"); version.step(); currentVersion=version.number(0); }
-        require(currentVersion <= 14, "This mail database needs a newer version of Mail.");
-        if (currentVersion == 14) return;
+        require(currentVersion <= 15, "This mail database needs a newer version of Mail.");
+        if (currentVersion == 15) return;
         Transaction transaction(db_);
         if (currentVersion == 0) {
         exec(db_, R"SQL(
@@ -287,12 +287,19 @@ ALTER TABLE gmail_drafts ADD COLUMN observed_thread TEXT NOT NULL DEFAULT '';
 ALTER TABLE gmail_drafts ADD COLUMN observed_raw BLOB NOT NULL DEFAULT X'';
 PRAGMA user_version=13;
 )SQL");
-        exec(db_, R"SQL(
+        if (currentVersion < 14) exec(db_, R"SQL(
 CREATE TABLE gmail_draft_matches (
  journal_id INTEGER NOT NULL REFERENCES gmail_drafts(id) ON DELETE CASCADE,
  remote_id TEXT NOT NULL,message_id TEXT NOT NULL,thread_id TEXT NOT NULL,
  subject TEXT NOT NULL,raw BLOB NOT NULL,PRIMARY KEY(journal_id,remote_id));
 PRAGMA user_version=14;
+)SQL");
+        // The lists filter on columns stored after each message's HTML and raw
+        // MIME: without an index holding them, every count read the whole
+        // database (minutes for a few gigabytes).
+        exec(db_, R"SQL(
+CREATE INDEX IF NOT EXISTS messages_list ON messages(thread_id,received,account_id,folder,unread,starred,snoozed_until,subject,sender);
+PRAGMA user_version=15;
 )SQL");
         transaction.commit();
     } catch (...) { sqlite3_close(db_); db_ = nullptr; throw; }
@@ -603,7 +610,7 @@ std::vector<Message> Store::thread(Id id)
 }
 namespace {
 // Messages visible in a view, as a common table expression named "matching".
-std::string matchingSql(bool search)
+std::string matchingSql(bool search, bool counting = false)
 {
     // Only the columns the lists use: the window function materializes every
     // selected column, and m.* would read each message's raw MIME and HTML.
@@ -632,6 +639,11 @@ AND (?6='' OR EXISTS(SELECT 1 FROM effective_tags t WHERE t.message_id=m.id AND 
 AND ((?7=1 AND snoozed_until>?9) OR (?7=0 AND (?8=1 OR snoozed_until<=?9)))
 )SQL";
     if (search) sql += " AND m.id IN(SELECT rowid FROM message_search WHERE message_search MATCH ?10)";
+    // Counts need no text: then the list index covers all the columns.
+    if (counting) {
+        const std::string text = "m.subject,m.sender,m.body,";
+        sql.erase(sql.find(text), text.size());
+    }
     return sql + ")";
 }
 void bindQuery(Statement& s, const Query& q, Timestamp now, const std::string& search)
@@ -660,7 +672,7 @@ std::size_t Store::unreadConversations(const Query& q, Timestamp now)
 {
     std::lock_guard<std::mutex> guard(mutex_);
     std::string search = searchExpression(q.text);
-    Statement s(db_, (matchingSql(!search.empty()) + " SELECT COUNT(DISTINCT thread_id) FROM matching WHERE unread=1").c_str());
+    Statement s(db_, (matchingSql(!search.empty(), true) + " SELECT COUNT(DISTINCT thread_id) FROM matching WHERE unread=1").c_str());
     bindQuery(s, q, now, search);
     return s.step() ? static_cast<std::size_t>(s.number(0)) : 0;
 }

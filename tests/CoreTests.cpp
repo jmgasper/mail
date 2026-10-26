@@ -262,7 +262,7 @@ void migrations(const std::string& directory)
         sqlite3* db=nullptr;
         expect(sqlite3_open(path.c_str(),&db)==SQLITE_OK,"open migration fixture");
         auto sql="PRAGMA user_version="+std::to_string(version)+";";
-        sql+="DROP TABLE gmail_draft_matches;";
+        sql+="DROP INDEX messages_list; DROP TABLE gmail_draft_matches;";
         if (version<13) sql+="DROP TABLE draft_editors;";
         if (version<12) sql+="DROP TABLE gmail_drafts; ALTER TABLE drafts DROP COLUMN revision;";
         else if (version<13) sql+="ALTER TABLE gmail_drafts DROP COLUMN conflict; ALTER TABLE gmail_drafts DROP COLUMN missing; ALTER TABLE gmail_drafts DROP COLUMN observed_id; ALTER TABLE gmail_drafts DROP COLUMN observed_thread; ALTER TABLE gmail_drafts DROP COLUMN observed_raw;";
