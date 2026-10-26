@@ -68,6 +68,11 @@ detailed test history and future enhancements.
   and provides zoom, Refresh and Edit message controls. Refresh saves current
   composer edits and updates the same preview. Links are inactive; images and
   the emoji font come from the draft snapshot and bundled resources.
+- Where the system draws emoji in color (air/OS since October 26, 2026),
+  Mail leaves them to it: color glyphs, sequences and flags come from the
+  system's fonts, and the message preview prefers Noto Color Emoji. Mail
+  finds out by drawing an emoji at start; `MAIL_PRIVATE_EMOJI=1` keeps the
+  embedded font. Elsewhere:
 - An embedded Noto Emoji font supplies monochrome glyphs in the reader,
   conversation list, subject, composer and emoji menu. Formatting, clipboard
   text and draft MIME retain the original Unicode. Caret movement, selection,

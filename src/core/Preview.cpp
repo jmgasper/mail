@@ -25,7 +25,8 @@ std::string documentHead(const std::string& root)
         && root.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:./-")==std::string::npos,"Invalid preview resource location.");
     return "<head><meta charset=\"utf-8\"><meta http-equiv=\"Content-Security-Policy\" content=\""+std::string(kPreviewPolicy)+"\">"
         "<style>@font-face{font-family:MailEmoji;src:url('"+root+"emoji.ttf');unicode-range:U+A9,U+AE,U+2000-2BFF,U+3030,U+303D,U+3297,U+3299,U+FE0E-FE0F,U+1F000-1FAFF,U+E0020-E007F}"
-        "body{font-family:MailEmoji,sans-serif!important;margin:16px}a{color:#1255a2;text-decoration:underline}img{max-width:100%;height:auto}</style></head>";
+        // A color emoji font comes first; Mail's monochrome font is the last resort.
+        "body{font-family:sans-serif,'Noto Color Emoji',Twemoji,emoji,MailEmoji!important;margin:16px}a{color:#1255a2;text-decoration:underline}img{max-width:100%;height:auto}</style></head>";
 }
 }
 std::string encodePreview(const PreviewSnapshot& s)

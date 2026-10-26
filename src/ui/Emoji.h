@@ -7,6 +7,8 @@
 
 namespace mail::ui {
 // The font is an application resource, never installed into the system.
+// It is not used where the system draws emoji in color itself.
+bool SystemDrawsColorEmoji();
 bool EmojiFontAvailable();
 bool IsEmojiFont(const BFont&);
 BFont EmojiFont(const BFont& source);

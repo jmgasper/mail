@@ -1,4 +1,5 @@
 #include "EmojiShaping.h"
+#include "Emoji.h"
 #include <Application.h>
 #include <OS.h>
 #include <Resources.h>
@@ -203,7 +204,11 @@ private:
 Shaper& shaper(){static Shaper value;return value;}
 }
 std::optional<BFont> EmojiSequenceFont(std::string_view cluster)
-{ try{return shaper().Shape(cluster);}catch(const std::exception&){return {};}}
+{
+    // The system joins the sequences itself when it draws emoji in color.
+    if(SystemDrawsColorEmoji())return {};
+    try{return shaper().Shape(cluster);}catch(const std::exception&){return {};}
+}
 BFont EmojiContinuationFont(){return shaper().Blank();}
 std::optional<BFont> StyledEmojiFont(const BFont& font,bool bold)
 {try{return shaper().Style(font,bold);}catch(const std::exception&){return {};}}

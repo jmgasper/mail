@@ -2,11 +2,13 @@
 #include "GraphemeEditing.h"
 #include "EmojiShaping.h"
 #include <Application.h>
+#include <Bitmap.h>
 #include <Clipboard.h>
 #include <OS.h>
 #include <Resources.h>
 #include <algorithm>
 #include <cmath>
+#include <cstdlib>
 #include <cstring>
 #include <memory>
 #include <mutex>
@@ -22,6 +24,7 @@ struct Typeface {
     std::unordered_map<uint32,bool> glyphs;
     Typeface()
     {
+        if (SystemDrawsColorEmoji()) return;
         auto* resources=BApplication::AppResources(); if (!resources) return;
         std::size_t size=0; const void* data=resources->LoadResource('RAWT',"Mail:NotoEmoji",&size);
         if (!data || !size || size>8*1024*1024) return;
@@ -98,6 +101,36 @@ BFont pieceFont(const Piece& part,const BFont& source)
     if(!part.shaped)return part.emoji?EmojiFont(source):textFont(source);
     auto font=*part.shaped;font.SetSize(source.Size());SetTextFace(font,TextFace(source));return font;
 }
+}
+bool SystemDrawsColorEmoji()
+{
+    // air/OS's app_server draws emoji, their sequences and flags in color
+    // from the system's color emoji font. Find out by drawing one.
+    static const bool color=[]{
+        if (getenv("MAIL_PRIVATE_EMOJI")) return false;
+        BRect bounds(0,0,47,47);
+        BBitmap bitmap(bounds,B_RGBA32,true);
+        if (bitmap.InitCheck()!=B_OK) return false;
+        auto* view=new BView(bounds,"emoji probe",B_FOLLOW_NONE,B_WILL_DRAW);
+        bitmap.AddChild(view);
+        if (!bitmap.Lock()) return false;
+        view->SetHighColor(255,255,255); view->FillRect(bounds);
+        BFont font(be_plain_font); font.SetSize(32); view->SetFont(&font);
+        view->SetHighColor(0,0,0); view->SetDrawingMode(B_OP_OVER);
+        view->DrawString("\xF0\x9F\x98\x80",BPoint(4,36));
+        view->Sync();
+        int32 colored=0;
+        for (int32 y=0;y<48;++y) {
+            auto* row=static_cast<const uint8*>(bitmap.Bits())+y*bitmap.BytesPerRow();
+            for (int32 x=0;x<48;++x) {
+                int b=row[x*4],g=row[x*4+1],r=row[x*4+2];
+                if (std::abs(r-g)>48 || std::abs(g-b)>48 || std::abs(r-b)>48) ++colored;
+            }
+        }
+        bitmap.Unlock();
+        return colored>40;
+    }();
+    return color;
 }
 bool EmojiFontAvailable() { return typeface().available; }
 bool IsEmojiFont(const BFont& font) { return (typeface().available && font.FamilyAndStyle()==typeface().font.FamilyAndStyle()) || IsShapedEmojiFont(font); }
