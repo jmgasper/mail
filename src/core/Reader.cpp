@@ -211,7 +211,8 @@ std::string conversationHtml(const std::vector<ReceivedPreview>& messages,const 
         "details[open]>.mail-header .mail-snippet{display:none}"
         "details[open]>.mail-header .mail-recipients{display:block}"
         ".mail-body{padding:12px 14px;overflow-x:auto;overflow-wrap:anywhere}"
-        ".mail-plain{white-space:pre-wrap;font:13px/1.45 MailEmoji,sans-serif}"
+        // A color emoji font comes first; Mail's monochrome font is the last resort.
+        ".mail-plain{white-space:pre-wrap;font:13px/1.45 sans-serif,'Noto Color Emoji',Twemoji,emoji,MailEmoji}"
         ".mail-quote{color:#5a6b7d;display:inline-block;border-left:3px solid #c8d3df;padding-left:8px}"
         ".mail-files{padding:6px 12px 0}"
         ".mail-file{display:inline-block;margin:0 6px 4px 0;padding:2px 8px;border:1px solid #ccc;border-radius:10px;font:12px sans-serif;color:#333;background:#fafafa}"
