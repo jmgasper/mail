@@ -19,6 +19,20 @@ int progress(void* user, curl_off_t, curl_off_t, curl_off_t, curl_off_t)
 { return *static_cast<const std::atomic<bool>*>(user) ? 1 : 0; }
 bool headerSafe(const std::string& value)
 { for (unsigned char c : value) if (c < 32 || c == 127) return false; return true; }
+// One easy handle per thread: repeated API calls reuse its connection and TLS
+// session instead of paying a handshake per request. curl_easy_reset clears
+// the options but keeps the connection cache, so every option is set fresh
+// on each request.
+CURL* acquireCurl()
+{
+    struct Cached { CURL* handle = nullptr; ~Cached() { if (handle) curl_easy_cleanup(handle); } };
+    static thread_local Cached cached;
+    if (!cached.handle) {
+        cached.handle = curl_easy_init();
+        if (!cached.handle) throw NetworkError(NetworkFailure::Connection, "Could not initialize HTTPS.");
+    } else curl_easy_reset(cached.handle);
+    return cached.handle;
+}
 }
 HttpError::HttpError(long code, const std::string& message)
     : NetworkError(code == 401 ? NetworkFailure::Authentication : NetworkFailure::Protocol, message), status(code) {}
@@ -44,9 +58,9 @@ HttpResponse requestHttps(const HttpRequest& request, const std::atomic<bool>& c
         throw NetworkError(NetworkFailure::Authentication, "The stored access token is invalid. Sign in again.");
     if (request.method != "GET" && request.method != "POST" && request.method != "DELETE" && request.method != "PUT" && request.method != "PATCH")
         throw NetworkError(NetworkFailure::Protocol, "Unsupported HTTP method.");
-    using Curl = std::unique_ptr<CURL, decltype(&curl_easy_cleanup)>;
-    Curl curl(curl_easy_init(), curl_easy_cleanup);
-    if (!curl) throw NetworkError(NetworkFailure::Connection, "Could not initialize HTTPS.");
+    CURL* const handle = acquireCurl();
+    using Curl = std::unique_ptr<CURL, void (*)(CURL*)>;
+    Curl curl(handle, [](CURL*) {}); // Owned by the thread-local cache.
     curl_slist* list = nullptr;
     auto add = [&](const std::string& text) {
         auto next = curl_slist_append(list, text.c_str());

@@ -610,13 +610,24 @@ std::vector<Message> Store::thread(Id id)
 }
 namespace {
 // Messages visible in a view, as a common table expression named "matching".
-std::string matchingSql(bool search, bool counting = false)
+enum class MatchingMode { List, Count };
+std::string matchingSql(bool search, MatchingMode mode)
 {
-    // Only the columns the lists use: the window function materializes every
-    // selected column, and m.* would read each message's raw MIME and HTML.
-    std::string sql = R"SQL(WITH matching AS (
-SELECT m.id,m.thread_id,m.account_id,m.subject,m.sender,m.body,m.received,m.unread,m.starred, EXISTS(SELECT 1 FROM attachments a WHERE a.message_id=m.id) AS has_attachment,
-ROW_NUMBER() OVER(PARTITION BY thread_id ORDER BY received DESC,m.id DESC) AS rank
+    // Only the columns each consumer needs. The window function feeds every
+    // selected column through its sorter: subject/sender/body there double
+    // the list cost on large mailboxes. The list joins the winning message
+    // back for its preview; counts need no window at all.
+    std::string columns;
+    switch (mode) {
+    case MatchingMode::List:
+        columns = "m.id,m.thread_id,m.account_id,m.received,m.unread,m.starred, EXISTS(SELECT 1 FROM attachments a WHERE a.message_id=m.id) AS has_attachment,\n"
+                  "ROW_NUMBER() OVER(PARTITION BY thread_id ORDER BY received DESC,m.id DESC) AS rank";
+        break;
+    case MatchingMode::Count:
+        columns = "m.thread_id,m.unread";
+        break;
+    }
+    std::string sql = "WITH matching AS (\nSELECT " + columns + R"SQL(
 FROM messages m JOIN accounts a ON a.id=m.account_id
 WHERE ((?1=0 AND a.unified=1) OR m.account_id=?1)
 AND NOT EXISTS(SELECT 1 FROM remote_messages r WHERE r.message_id=m.id AND r.present=0)
@@ -639,11 +650,6 @@ AND (?6='' OR EXISTS(SELECT 1 FROM effective_tags t WHERE t.message_id=m.id AND 
 AND ((?7=1 AND snoozed_until>?9) OR (?7=0 AND (?8=1 OR snoozed_until<=?9)))
 )SQL";
     if (search) sql += " AND m.id IN(SELECT rowid FROM message_search WHERE message_search MATCH ?10)";
-    // Counts need no text: then the list index covers all the columns.
-    if (counting) {
-        const std::string text = "m.subject,m.sender,m.body,";
-        sql.erase(sql.find(text), text.size());
-    }
     return sql + ")";
 }
 void bindQuery(Statement& s, const Query& q, Timestamp now, const std::string& search)
@@ -657,11 +663,14 @@ std::vector<Conversation> Store::conversations(const Query& q, Timestamp now)
 {
     std::lock_guard<std::mutex> guard(mutex_);
     std::string search = searchExpression(q.text);
-    std::string sql = matchingSql(!search.empty()) + R"SQL(
-SELECT thread_id,account_id,
-MAX(CASE WHEN rank=1 THEN subject END),MAX(CASE WHEN rank=1 THEN sender END),
-MAX(CASE WHEN rank=1 THEN substr(body,1,180) END),MAX(received),COUNT(*),SUM(unread),MAX(starred),MAX(has_attachment)
-FROM matching GROUP BY thread_id ORDER BY MAX(received) DESC,thread_id DESC)SQL";
+    std::string sql = matchingSql(!search.empty(), MatchingMode::List) + R"SQL(
+SELECT s.thread_id,s.account_id,lm.subject,lm.sender,substr(lm.body,1,180),s.latest,s.count,s.unread,s.starred,s.has_attachment
+FROM (
+SELECT thread_id,MAX(CASE WHEN rank=1 THEN account_id END) AS account_id,MAX(received) AS latest,COUNT(*) AS count,
+SUM(unread) AS unread,MAX(starred) AS starred,MAX(has_attachment) AS has_attachment,MAX(CASE WHEN rank=1 THEN id END) AS latest_id
+FROM matching GROUP BY thread_id
+) s JOIN messages lm ON lm.id=s.latest_id
+ORDER BY s.latest DESC,s.thread_id DESC)SQL";
     Statement s(db_, sql.c_str()); bindQuery(s, q, now, search);
     std::vector<Conversation> out;
     while (s.step()) out.push_back({s.number(0),s.number(1),s.text(2),s.text(3),s.text(4),s.number(5),
@@ -672,7 +681,7 @@ std::size_t Store::unreadConversations(const Query& q, Timestamp now)
 {
     std::lock_guard<std::mutex> guard(mutex_);
     std::string search = searchExpression(q.text);
-    Statement s(db_, (matchingSql(!search.empty(), true) + " SELECT COUNT(DISTINCT thread_id) FROM matching WHERE unread=1").c_str());
+    Statement s(db_, (matchingSql(!search.empty(), MatchingMode::Count) + " SELECT COUNT(DISTINCT thread_id) FROM matching WHERE unread=1").c_str());
     bindQuery(s, q, now, search);
     return s.step() ? static_cast<std::size_t>(s.number(0)) : 0;
 }

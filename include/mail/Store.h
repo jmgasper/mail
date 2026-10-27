@@ -87,6 +87,12 @@ public:
     void saveGmailLabels(Id account, const std::vector<GmailLabel>&);
     std::vector<GmailLabel> gmailLabels(Id account);
     Id ingestGmail(Id account, const GmailMessage&, Id acknowledgedOperation=0);
+    // One lock and one transaction for a whole fetched page. Uses relaxed
+    // durability: bulk sync redownloads after an interrupted commit, so this
+    // never risks user edits. Messages labeled DRAFT are hidden rather than
+    // cached (editable drafts sync through the draft journal). The result
+    // holds the local ID per input, 0 for a hidden draft.
+    std::vector<Id> ingestGmailBatch(Id account, const std::vector<GmailMessage>&);
     std::vector<std::string> cachedGmailIds(Id account);
     std::string gmailHistory(Id account);
     // Call only after all pages and message updates succeed. Deleted IDs must

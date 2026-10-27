@@ -169,12 +169,47 @@ Id Store::ingestGmailMessage(Id account, const GmailMessage& remote, Id acknowle
             Statement done(db_, "DELETE FROM pending_changes WHERE id=?"); done.bind(1, acknowledgement); done.step();
         }
     }
-    replaceLabels(db_, id, labels); applyGmailPending(id); return id;
+    replaceLabels(db_, id, labels);
+    // A just-created message already stored exactly these flags, unless rules
+    // queued edits or a label removal needs overlaying; re-ingesting metadata
+    // must still reconcile through applyGmailPending below.
+    if (created) {
+        Statement waiting(db_, "SELECT 1 FROM pending_changes WHERE message_id=? LIMIT 1"); waiting.bind(1, id);
+        Statement deleted(db_, "SELECT 1 FROM label_changes WHERE account_id=? AND kind='delete' LIMIT 1"); deleted.bind(1, account);
+        if (!waiting.step() && !deleted.step()) return id;
+    }
+    applyGmailPending(id); return id;
 }
 Id Store::ingestGmail(Id account, const GmailMessage& message, Id acknowledgement)
 {
     std::lock_guard<std::mutex> guard(mutex_); Transaction transaction(db_);
     auto id = ingestGmailMessage(account, message, acknowledgement, true); transaction.commit(); return id;
+}
+std::vector<Id> Store::ingestGmailBatch(Id account, const std::vector<GmailMessage>& messages)
+{
+    std::lock_guard<std::mutex> guard(mutex_); gmailAccount(db_, account);
+    std::vector<Id> ids(messages.size(), 0);
+    if (messages.empty()) return ids;
+    // synchronous=NORMAL keeps WAL integrity; a crash at worst loses part of
+    // the just-downloaded batch, which the next check downloads again.
+    exec(db_, "PRAGMA synchronous=NORMAL");
+    try {
+        Transaction transaction(db_);
+        for (std::size_t i = 0; i < messages.size(); ++i) {
+            const auto& remote = messages[i];
+            if (std::find(remote.labels.begin(), remote.labels.end(), "DRAFT") != remote.labels.end()) {
+                removeGmailMessageLocked(account, remote.id);
+                continue;
+            }
+            ids[i] = ingestGmailMessage(account, remote, 0, true);
+        }
+        transaction.commit();
+    } catch (...) {
+        sqlite3_exec(db_, "PRAGMA synchronous=FULL", nullptr, nullptr, nullptr);
+        throw;
+    }
+    exec(db_, "PRAGMA synchronous=FULL");
+    return ids;
 }
 std::vector<std::string> Store::cachedGmailIds(Id account)
 {

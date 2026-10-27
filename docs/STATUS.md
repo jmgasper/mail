@@ -1139,6 +1139,26 @@ retained. See `package-v9-{build,lifecycle}.log` and the release manifest.
 
 ## Follow-up enhancements and live validation
 
+Large-mailbox performance pass, 2026-10-27: profiling with a synthetic
+100,000-message mailbox (`mail_perf_tests`, built but kept out of CTest) showed
+three dominant costs: one HTTPS request with a fresh TLS handshake per
+message, one store transaction (and `synchronous=FULL` commit) per ingested
+message, and multi-second conversation-list queries. Gmail checks now fetch
+message contents on up to eight worker threads through one shared `GmailApi`
+(its credential callback was already serialized), while the calling thread
+ingests results in batches of up to 400 messages per transaction under relaxed
+durability; each thread reuses its HTTPS connection, and "already cached" is
+decided from one snapshot of cached IDs instead of a store query per listed
+message, so the store lock stays available to the UI during long checks.
+Conversation lists rank and aggregate a lean column set and join the winning
+message back for its preview; unread counts skip the window function.
+Measured on Linux/Release at 100k messages: inbox list 1.71 s → 0.49 s,
+unread counts 0.39 s → 0.06 s, full-text list 2.36 s → 0.79 s, ingestion
+1,330 → 1,750 messages/s, with bulk commits also removing up to one fsync per
+message on slower disks. All 21 host suites and the independent Gmail HTTPS
+fixture still pass. IMAP/POP3 receive still ingests serially per message;
+batching it and a prepared-statement cache remain future work.
+
 Installation follow-up, 2026-10-22: the user's x86_64 `hrev60207+1733` build
 predates the font-cache fix and rejects Mail revision 9's capability dependency.
 The exact error was reproduced with the matching original OS package. The

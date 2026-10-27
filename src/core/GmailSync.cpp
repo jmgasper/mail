@@ -1,7 +1,15 @@
 #include "mail/Sync.h"
 #include <algorithm>
 #include <cctype>
+#include <condition_variable>
+#include <deque>
+#include <exception>
+#include <mutex>
 #include <set>
+#include <thread>
+#include <unordered_set>
+#include <utility>
+#include <vector>
 
 namespace mail {
 namespace {
@@ -17,6 +25,132 @@ void nextPage(std::set<std::string>& visited, const std::string& token)
     if (!token.empty() && (!visited.insert(token).second || visited.size() > 10000))
         throw NetworkError(NetworkFailure::Protocol, "Gmail returned repeated or excessive pages. The saved sync cursor was not advanced.");
 }
+// Fetches Gmail message contents on worker threads (the network-bound part of
+// a check) while the caller drains completed fetches and ingests them in
+// batches. The store stays on the caller's thread. Any failure other than a
+// confirmed 404 is fatal: workers stop accepting new work and the caller
+// rethrows the original exception once the pool has wound down.
+class FetchPool {
+public:
+    struct FetchResult {
+        std::string id;
+        GmailMessage message; // Valid unless notFound or error is set.
+        bool notFound = false;
+        std::exception_ptr error;
+    };
+    FetchPool(GmailApi& api, const std::atomic<bool>& cancelled) : api_(api)
+    {
+        (void)cancelled; // Cancellation aborts in-flight requests through the API's progress callback.
+        const auto available = std::thread::hardware_concurrency();
+        const auto count = std::min<unsigned>(8, std::max<unsigned>(2, available ? available : 4));
+        workers_.reserve(count);
+        for (unsigned i = 0; i < count; ++i) workers_.emplace_back([this] { run(); });
+    }
+    FetchPool(const FetchPool&) = delete;
+    FetchPool& operator=(const FetchPool&) = delete;
+    ~FetchPool()
+    {
+        {
+            std::lock_guard<std::mutex> guard(mutex_);
+            stopped_ = true;
+            tasks_.clear();
+        }
+        cv_.notify_all();
+        for (auto& worker : workers_) worker.join();
+    }
+
+    void submit(std::string id, bool raw)
+    {
+        std::lock_guard<std::mutex> guard(mutex_);
+        if (stopped_ || fatal_) return;
+        tasks_.push_back({std::move(id), raw});
+        cv_.notify_one();
+    }
+    void finishSubmitting()
+    {
+        std::lock_guard<std::mutex> guard(mutex_);
+        submitting_ = false;
+        cv_.notify_all();
+    }
+    // Completed results, without waiting.
+    std::vector<FetchResult> poll(std::size_t limit) { return take(limit, false); }
+    // Completed results, waiting when none are available. `finished` reports
+    // that no further results can arrive.
+    std::vector<FetchResult> wait(std::size_t limit, bool& finished) { return take(limit, true, &finished); }
+
+private:
+    struct Task { std::string id; bool raw; };
+    std::vector<FetchResult> take(std::size_t limit, bool block, bool* finished = nullptr)
+    {
+        std::unique_lock<std::mutex> guard(mutex_);
+        if (block) {
+            cv_.wait(guard, [&] {
+                return !results_.empty() || (tasks_.empty() && active_ == 0 && (fatal_ || !submitting_));
+            });
+        }
+        std::vector<FetchResult> out;
+        out.reserve(std::min(limit, results_.size()));
+        while (!results_.empty() && out.size() < limit) {
+            out.push_back(std::move(results_.front()));
+            results_.pop_front();
+        }
+        if (finished)
+            *finished = tasks_.empty() && active_ == 0 && results_.empty() && (fatal_ || !submitting_);
+        return out;
+    }
+    void run()
+    {
+        // Workers live until the destructor stops them: submission phases can
+        // resume after a drain (baseline confirmation), and idle workers cost
+        // nothing against the network wait they exist to hide.
+        for (;;) {
+            Task task;
+            {
+                std::unique_lock<std::mutex> guard(mutex_);
+                cv_.wait(guard, [&] { return stopped_ || fatal_ || !tasks_.empty(); });
+                if (stopped_ || fatal_ || tasks_.empty()) return;
+                task = std::move(tasks_.front());
+                tasks_.pop_front();
+                ++active_;
+            }
+            FetchResult result;
+            result.id = task.id;
+            try {
+                result.message = api_.message(task.id, task.raw);
+            } catch (const HttpError& error) {
+                if (error.status == 404) result.notFound = true;
+                else {
+                    result.error = std::current_exception();
+                    std::lock_guard<std::mutex> guard(mutex_);
+                    fatal_ = true;
+                    tasks_.clear(); // Drop pending work so the drain can finish.
+                }
+            } catch (const std::exception&) {
+                result.error = std::current_exception();
+                std::lock_guard<std::mutex> guard(mutex_);
+                fatal_ = true;
+                tasks_.clear();
+            }
+            {
+                std::lock_guard<std::mutex> guard(mutex_);
+                --active_;
+                results_.push_back(std::move(result));
+            }
+            cv_.notify_all();
+        }
+    }
+
+    GmailApi& api_;
+    std::vector<std::thread> workers_;
+    std::mutex mutex_;
+    std::condition_variable cv_;
+    std::deque<Task> tasks_;
+    std::deque<FetchResult> results_;
+    std::size_t active_ = 0;
+    bool submitting_ = true;
+    bool fatal_ = false;
+    bool stopped_ = false;
+};
 }
 void verifyGmailIdentity(const Account& account, const GmailProfile& profile)
 {
@@ -133,34 +267,62 @@ SyncReport syncGmailAccount(Store& store, const Account& account, GmailApi& api,
     }
     std::vector<std::string> deleted;
     std::size_t done = 0, total = full ? 0 : changed.size();
-    auto receive = [&](const std::string& id) {
-        checkCancelled(cancelled);
-        if (progress) progress({(full ? "Downloading " : "Updating ") + account.name + " — Gmail", 0, 0, done++, total});
-        bool known = store.findRemote(account.id, "gmail:" + id) != 0;
-        try {
-            auto remote=api.message(id,!known);
+    // "Already cached" is decided from one snapshot, not a store query per
+    // message: the store lock stays available to the UI during a long check.
+    // A message first cached mid-check is at most fetched once more with its
+    // body, and ingestion preserves local edits on conflict.
+    const auto baseline = store.cachedGmailIds(account.id);
+    const std::unordered_set<std::string> known(baseline.begin(), baseline.end());
+    FetchPool pool(api, cancelled);
+    std::exception_ptr failure;
+    auto process = [&](std::vector<FetchPool::FetchResult> batch) {
+        if (batch.empty()) return;
+        std::vector<GmailMessage> fresh;
+        for (auto& result : batch) {
+            ++done;
+            if (result.error) { if (!failure) failure = result.error; continue; }
+            if (result.notFound) { deleted.push_back(std::move(result.id)); continue; }
             // Editable drafts are synchronized through the stable draft ID.
             // Old message-cache entries are hidden to avoid read-only twins.
-            if (std::find(remote.labels.begin(),remote.labels.end(),"DRAFT")!=remote.labels.end()) store.removeGmailMessage(account.id,id);
-            else { store.ingestGmail(account.id,remote); if (!known) ++report.downloaded; }
+            const bool draft = std::find(result.message.labels.begin(), result.message.labels.end(), "DRAFT") != result.message.labels.end();
+            if (!draft && !known.count(result.id)) ++report.downloaded;
+            fresh.push_back(std::move(result.message));
         }
-        catch (const HttpError& error) { if (error.status != 404) throw; deleted.push_back(id); }
+        if (!fresh.empty()) store.ingestGmailBatch(account.id, fresh);
+        if (progress) progress({(full ? "Downloading " : "Updating ") + account.name + " — Gmail", 0, 0, done, total});
+    };
+    auto drain = [&] {
+        for (bool finished = false; !finished;) process(pool.wait(400, finished));
     };
     if (full) {
         // The initial profile precedes all list/fetch requests. Changes made
         // during this full check remain discoverable by the following history check.
         checkpoint = profile.history;
-        auto baseline = store.cachedGmailIds(account.id); std::set<std::string> seen, pages; std::string page;
+        std::set<std::string> seen, pages; std::string page;
         do {
             checkCancelled(cancelled); auto messages = api.messages(page);
-            for (const auto& id : messages.ids) if (seen.insert(id).second) receive(id);
+            for (const auto& id : messages.ids) if (seen.insert(id).second) pool.submit(id, !known.count(id));
+            // Keep the pending queue bounded: ingest what has arrived so far.
+            process(pool.poll(400));
             if (seen.size() > 5000000) throw NetworkError(NetworkFailure::Protocol, "This Gmail mailbox exceeds Mail's sync limit.");
             page = messages.next; nextPage(pages, page);
         } while (!page.empty());
+        pool.finishSubmitting();
+        drain();
+        checkCancelled(cancelled);
         // List pagination is not a transaction. Confirm missing baseline IDs
         // individually so concurrent changes cannot silently hide cached mail.
-        for (const auto& id : baseline) if (!seen.count(id)) receive(id);
-    } else for (const auto& id : changed) receive(id);
+        for (const auto& id : baseline) if (!seen.count(id)) pool.submit(id, !known.count(id));
+        pool.finishSubmitting();
+        drain();
+    } else {
+        for (const auto& id : changed) pool.submit(id, !known.count(id));
+        pool.finishSubmitting();
+        drain();
+    }
+    // A failed fetch aborts the check before the cursor advances, matching a
+    // serial check; everything already ingested is idempotent.
+    if (failure) std::rethrow_exception(failure);
     checkCancelled(cancelled); store.finishGmailSync(account.id, checkpoint, deleted);
     apply(); // Includes actions created by automatic filters on newly received mail.
     auto drafts=syncGmailDrafts(store,account,api,cancelled);

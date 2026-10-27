@@ -566,6 +566,23 @@ icon) and the mailbox/toolbar icons from a Haiku source tree;
 `tools/make-ui-icons.py` draws the two icons Haiku has no match for. The
 application uses HVIF, never the PNG previews. `tools/hvif.py` is the MIT-licensed codec shared with AirPins.
 
+## Performance
+
+Large mailboxes (hundreds of thousands of messages) drive a few load-bearing choices:
+
+- Gmail checks fetch message contents on a pool of worker threads (up to 8) while the calling thread ingests results in batches of up to 400 messages per transaction. HTTPS connections and TLS sessions are reused per thread instead of renegotiated per request, and "already cached" is decided from one snapshot of cached IDs, so the store lock stays available to the UI during a long check.
+- Bulk ingestion commits use relaxed durability (`synchronous=NORMAL`); an interrupted batch is redownloaded by the next check. Local edits (read/star/move/tag, drafts, outbox) always commit with full durability.
+- Conversation lists rank and aggregate a lean column set and join the winning message back for its preview; unread counts skip the window function entirely. A synthetic 100,000-message mailbox lists in ~0.5 s and counts unread conversations in ~0.06 s (Linux, Release build).
+
+`mail_perf_tests` (built by CMake, not part of CTest) seeds a synthetic mailbox and times ingestion and the UI queries:
+
+```sh
+cmake --build build-perf --target mail_perf_tests
+./build-perf/mail_perf_tests 100000 25
+```
+
+`MAIL_PERF_KEEP_DB=1` keeps the seeded database for query analysis; `MAIL_PERF_BATCH_ONLY=1` skips the per-message-ingest baseline.
+
 ## Design and protocol references
 
 The interface follows Haiku's native widgets, layout spacing, menu conventions,
